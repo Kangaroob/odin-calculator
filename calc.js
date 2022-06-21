@@ -27,34 +27,28 @@ function operator() {
     opclose();
 }
 
-function sub() {
-    if (z == null) {
-        z = x - y;
-    } else {        
-        console.log(z);
-        x = z;
-        z = null;
-    }
+function minus() {
+    operator();
+    equation = function() {
+       result = x - y;
+    };
+    lastpress = "minus"
 }
 
-function div() {
-    if (z == null) {
-        z = x / y;
-    } else {        
-        console.log(z);
-        x = z;
-        z = null;
-    }
+function divby() {
+    operator();
+    equation = function() {
+       result = x / y;
+    };
+    lastpress = "divby"
 }
 
 function mult() {
-    if (z == null) {
-        z = x * y;
-    } else {        
-        console.log(z);
-        x = z;
-        z = null;
-    }
+    operator();
+    equation = function() {
+       result = x * y;
+    };
+    lastpress = "mutlby"
 }
 
 //Give x and y value; clear str
