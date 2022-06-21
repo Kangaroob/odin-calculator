@@ -43,7 +43,7 @@ function divby() {
     lastpress = "divby"
 }
 
-function mult() {
+function mutlby() {
     operator();
     equation = function() {
        result = x * y;
