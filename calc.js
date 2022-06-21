@@ -1,24 +1,54 @@
-var x
-var y
-var z
+var x;
+var y;
+var z = null;
 
 function add() {
-    z = x + y
+    if (z == null) {
+        z = x + y;
+    } else {        
+        console.log(z);
+        x = z;
+        z = null;
+    }
 }
 
 function sub() {
-    z = x - y
+    if (z == null) {
+        z = x - y;
+    } else {        
+        console.log(z);
+        x = z;
+        z = null;
+    }
 }
 
 function div() {
-    z = x / y
+    if (z == null) {
+        z = x / y;
+    } else {        
+        console.log(z);
+        x = z;
+        z = null;
+    }
 }
 
 function mult() {
-    z = x * y
+    if (z == null) {
+        z = x * y;
+    } else {        
+        console.log(z);
+        x = z;
+        z = null;
+    }
 }
 
 function eq() {
-    console.log(z)
-    x = z
+    console.log(z);
+    x = z;
+    z = null;
 }
+
+x = 3
+y = 5
+add()
+add()
