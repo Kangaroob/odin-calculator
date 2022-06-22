@@ -10,6 +10,8 @@ var equation = function() {
 }
 var str = "";
 var reqy = false
+var dcm = false
+var neg = false
 var inf = "NICE TRY"
 
 function on() {
@@ -75,7 +77,6 @@ function multby() {
     equation = function() {
         result = x * y;
     };
-    display.innerHTML = "X"
     thispress = "clear"
     lastpress = "multby"
 }
@@ -121,6 +122,7 @@ function opstart() {
         y = parseFloat(str)
     }
     str = ""
+    dcm = false
 }
 
 function opclose() {
@@ -166,6 +168,26 @@ function num(k) {
     if (lastpress != "equals" && str.length < 8) {
         str += k
         display.innerHTML = str;
+    }
+}
+
+function decimal() {
+    if (lastpress != "equals" && str.length < 8 && dcm != true) {
+        str += "."
+        dcm = true
+        display.innerHTML = str;
+    }
+}
+
+function negative() {
+    if (str.length > 0) {
+        str = parseFloat(str)
+        str *= -1
+        str = String(str)
+        display.innerHTML = str;
+    } else {
+        x *= -1
+        display.innerHTML = x;
     }
 }
 
