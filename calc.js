@@ -40,6 +40,7 @@ function plus() {
     }    
     thispress = "clear"
     lastpress = "plus"
+    display.innerHTML = "+"
 }
 
 function minus() {
@@ -48,6 +49,7 @@ function minus() {
     equation = function() {
       result = x - y;
     };
+    display.innerHTML = "-"
     thispress = "clear"
     lastpress = "minus"
 }
@@ -55,16 +57,14 @@ function minus() {
 function divby() {
     thispress = "divby"
     operator();
-    
-        equation = function() {
-            if (y != 0) {
-                result = x / y;
-            } else {
-                result = "inf";
-            }
-        
-        };
-    
+    equation = function() {
+        if (y != 0) {
+            result = x / y;
+        } else {
+            result = "inf";
+        }
+    };
+    display.innerHTML = "/"
     thispress = "clear"
     lastpress = "divby"
 }
@@ -72,11 +72,10 @@ function divby() {
 function multby() {
     thispress = "multby"
     operator();
-    
-        equation = function() {
-          result = x * y;
-        };
-    
+    equation = function() {
+        result = x * y;
+    };
+    display.innerHTML = "X"
     thispress = "clear"
     lastpress = "multby"
 }
