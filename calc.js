@@ -86,8 +86,8 @@ function divby() {
     lastpress = "divby"
 }
 
-function mutltby() {
-    thispress = "mutlby"
+function multby() {
+    thispress = "multby"
     operator();
     if (reqy != true){
         equation = function() {
@@ -95,7 +95,7 @@ function mutltby() {
         };
     }
     thispress = "clear"
-    lastpress = "mutlby"
+    lastpress = "multby"
 }
 
 //Give x and y value; clear str
