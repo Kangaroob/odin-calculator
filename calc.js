@@ -29,7 +29,7 @@ var str = "";
 var reqy = false
 var dcm = false
 var neg = false
-var inf = "NICE TRY"
+var inf = "-0.0-"
 
 function on() {
     operator()
@@ -127,6 +127,9 @@ function operator() {
 
 //Give x and y value; clear str
 function opstart() {
+    if (str == "-" || str == "." || str == "-.") {
+        str = 0;
+    }
    if (x == null) {
         if (str.length > 0) {
             x = parseFloat(str);
@@ -209,7 +212,13 @@ function decimal() {
 
 function negative() {
     if (str.length > 0) {
-        if (str == "-") {
+        if (str == ".") {
+            str = "-.";
+            display.innerHTML = str;
+        } else if (str == "-.") {
+            str = ".";
+            display.innerHTML = str;
+        } else if (str == "-") {
             str = "";
             display.innerHTML = str;
         } else {
