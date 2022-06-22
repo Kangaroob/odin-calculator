@@ -133,7 +133,13 @@ function opclose() {
     } else if (result == null) {
         display.innerHTML = x;
     } else {
-        x = result;
+        x = result.slice(0,10);
+        if (result.length > 8) {
+            if (result[8] > 4 && result.length > 9 || result[8] > 5) {
+                result[7] += 1;
+            };
+            result = result.slice(0,9)
+        }
         display.innerHTML = x;
     };
     result = null;
@@ -149,7 +155,7 @@ function equals() {
 }
 
 function num(k) {
-    if (lastpress != "equals") {
+    if (lastpress != "equals" && str.length < 8) {
         str += k
         display.innerHTML = str;
     }
