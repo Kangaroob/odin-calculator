@@ -209,13 +209,21 @@ function decimal() {
 
 function negative() {
     if (str.length > 0) {
-        str = parseFloat(str)
-        str *= -1
-        str = String(str)
-        display.innerHTML = str;
-    } else {
+        if (str == "-") {
+            str = "";
+            display.innerHTML = str;
+        } else {
+            str = parseFloat(str)
+            str *= -1
+            str = String(str)
+            display.innerHTML = str;
+        }
+    } else if (lastpress == thispress){ 
         x *= -1
         display.innerHTML = x;
+    } else {
+        str += "-"
+        display.innerHTML = str;
     }
 }
 
