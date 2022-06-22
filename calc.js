@@ -110,16 +110,16 @@ function operator() {
 function opstart() {
    if (x == null) {
         if (str.length > 0) {
-            x = parseInt(str);
+            x = parseFloat(str);
         }
     } else if (y == null) {
         if (str.length == 0 && reqy != true) {
             y = x
         } else if (str.length != 0) {
-            y = parseInt(str)
+            y = parseFloat(str)
         }
     } else if (str.length != 0) {
-        y = parseInt(str)
+        y = parseFloat(str)
     }
     str = ""
 }
@@ -133,16 +133,23 @@ function opclose() {
     } else if (result == null) {
         display.innerHTML = x;
     } else {
-        x = result;
-        console.log(x.length);
+        // x = Number(result);
+        // x = x.toPrecision(4)
+        // console.log(x.length);
         // x = result.slice(0,10);
-        // if (result.length > 8) {
+        // if (x.length > 9) {
+            // x = x.slice(0, 10);
+        // console.log("x string " + x);
+
         //     if (result[8] > 4 && result.length > 9 || result[8] > 5) {
         //         result[7] += 1;
-        //     };
+            // };
         //     result = result.slice(0,9)
         // }
+        // console.log("x float" + x)
+        x = result
         display.innerHTML = x;
+        // x = parseFloat(x)
     };
     result = null;
 }
