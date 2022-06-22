@@ -2,14 +2,18 @@ const display = document.querySelector('.display-text');
 
 // var log;
 
-// document.addEventListener('keydown', logKey);
+// document.addEventListener('keydown', logKey));
 
-// function logKey(e) {
-//     log = ` ${e.code}`;
-//     display.innerHTML = log;
-//     log = String(log)
-//     if (log == "Digit9") {
-//         num(9);
+// function logKey(r) {
+//     if (r.key === "9") {
+//         num(9)
+//     } else {
+//     log = r.key;
+    // display.innerHTML = log;
+    // log = String(log)
+    // if (log == "9") {
+    //     num(9);
+    // }
 //     }
 // };
 
@@ -171,7 +175,16 @@ function opclose() {
         // }
         // console.log("x float" + x)
         x = result
-        display.innerHTML = x;
+        let stringx = String(x)
+        let roundx = Number(x)
+        if (stringx.length > 8) {
+            if (roundx > 9999999) {
+                roundx = roundx.toPrecision(4)
+            } else {
+                roundx = roundx.toPrecision(7)
+            }
+        }
+        display.innerHTML = roundx;
         // x = parseFloat(x)
     };
     result = null;
