@@ -13,13 +13,12 @@ function on() {
     operator()
 }
 
-function clear() {
+function Clear() {
     x = null;
-    console.log(x)
     y = null;
     result = null;
     equation = function() {
-        let Q = Q
+        var Q = Q
     }
     str = null;
     str = "";
@@ -87,7 +86,7 @@ function divby() {
     lastpress = "divby"
 }
 
-function mutlby() {
+function mutltby() {
     thispress = "mutlby"
     operator();
     if (reqy != true){
