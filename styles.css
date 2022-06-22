@@ -52,6 +52,7 @@ body {
     display: flex;
     flex: 1 0 auto;
     font-size: larger;
+    border-radius: 8px;
 }
 
 .buttons {
