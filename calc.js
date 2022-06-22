@@ -40,9 +40,11 @@ function plus() {
     equation = function() {
        result = x + y;
     }    
+    if (lastpress != thispress) {
+        display.innerHTML = "+"
+    }
     thispress = "clear"
     lastpress = "plus"
-    display.innerHTML = "+"
 }
 
 function minus() {
@@ -51,7 +53,9 @@ function minus() {
     equation = function() {
       result = x - y;
     };
-    display.innerHTML = "-"
+    if (lastpress != thispress) {
+        display.innerHTML = "-"
+    }
     thispress = "clear"
     lastpress = "minus"
 }
@@ -66,7 +70,9 @@ function divby() {
             result = "inf";
         }
     };
-    display.innerHTML = "/"
+    if (lastpress != thispress) {
+        display.innerHTML = "/"
+    }
     thispress = "clear"
     lastpress = "divby"
 }
@@ -77,7 +83,9 @@ function multby() {
     equation = function() {
         result = x * y;
     };
-    display.innerHTML = "x"
+    if (lastpress != thispress) {
+        display.innerHTML = "x"
+    }
     thispress = "clear"
     lastpress = "multby"
 }
