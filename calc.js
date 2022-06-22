@@ -1,5 +1,18 @@
 const display = document.querySelector('.display-text');
 
+// var log;
+
+// document.addEventListener('keydown', logKey);
+
+// function logKey(e) {
+//     log = ` ${e.code}`;
+//     display.innerHTML = log;
+//     log = String(log)
+//     if (log == "Digit9") {
+//         num(9);
+//     }
+// };
+
 var lastpress = "clear";
 var thispress = "clear";
 var x = null;
