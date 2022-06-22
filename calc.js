@@ -17,6 +17,7 @@ function on() {
 function Clear() {
     x = null;
     y = null;
+    z = null;
     result = null;
     equation = function() {
         var Q = Q
@@ -57,11 +58,9 @@ function operator() {
 function plus() {
     thispress = "plus"
     operator();
-    if (reqy != true){
-        equation = function() {
-           result = x + y;
-        }
-    }
+    equation = function() {
+       result = x + y;
+    }    
     thispress = "clear"
     lastpress = "plus"
 }
@@ -69,11 +68,9 @@ function plus() {
 function minus() {
     thispress = "minus"
     operator();
-    if (reqy != true){
-        equation = function() {
-          result = x - y;
-        };
-    }
+    equation = function() {
+      result = x - y;
+    };
     thispress = "clear"
     lastpress = "minus"
 }
@@ -81,7 +78,7 @@ function minus() {
 function divby() {
     thispress = "divby"
     operator();
-    if (reqy != true){
+    
         equation = function() {
             if (y != 0) {
                 result = x / y;
@@ -90,7 +87,7 @@ function divby() {
             }
         
         };
-    }
+    
     thispress = "clear"
     lastpress = "divby"
 }
@@ -98,11 +95,11 @@ function divby() {
 function multby() {
     thispress = "multby"
     operator();
-    if (reqy != true){
+    
         equation = function() {
           result = x * y;
         };
-    }
+    
     thispress = "clear"
     lastpress = "multby"
 }
@@ -145,7 +142,8 @@ function equals() {
     operator();
     z = y;
     y = null;
-    lastpress = "equals"
+    lastpress = "equals";
+    reqy = true;
 }
 
 function num(k) {
