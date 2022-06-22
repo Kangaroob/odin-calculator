@@ -1,3 +1,5 @@
+const div = document.querySelector('div');
+
 var lastpress = "clear";
 var thispress = "clear";
 var x = null;
@@ -124,15 +126,15 @@ function opstart() {
 
 function opclose() {
     if (x == null) {
-        console.log(0);
+        div.innerHTML = "0"
     } else if (result == "inf") {
-        console.log(inf)
+        div.innerHTML = inf;
         result = null
     } else if (result == null) {
-        console.log(x)
+        div.innerHTML = x;
     } else {
         x = result;
-        console.log(x);
+        div.innerHTML = x;
     };
     result = null;
 }
@@ -149,7 +151,7 @@ function equals() {
 function num(k) {
     if (lastpress != "equals") {
         str += k
-        console.log(str)
+        div.innerHTML = str
     }
 }
 
