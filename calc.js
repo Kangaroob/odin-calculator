@@ -218,7 +218,7 @@ function negative() {
             str = String(str)
             display.innerHTML = str;
         }
-    } else if (lastpress == thispress){ 
+    } else if (lastpress == thispress && x != null){ 
         x *= -1
         display.innerHTML = x;
     } else {
