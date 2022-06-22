@@ -57,9 +57,7 @@ function plus() {
     equation = function() {
        result = x + y;
     }    
-    if (lastpress != thispress) {
-        display.innerHTML = "+"
-    }
+    display.innerHTML += "+"
     thispress = "clear"
     lastpress = "plus"
 }
@@ -70,9 +68,7 @@ function minus() {
     equation = function() {
       result = x - y;
     };
-    if (lastpress != thispress) {
-        display.innerHTML = "-"
-    }
+    display.innerHTML += "-"
     thispress = "clear"
     lastpress = "minus"
 }
@@ -87,9 +83,7 @@ function divby() {
             result = "inf";
         }
     };
-    if (lastpress != thispress) {
-        display.innerHTML = "/"
-    }
+    display.innerHTML += "/"
     thispress = "clear"
     lastpress = "divby"
 }
@@ -100,9 +94,7 @@ function multby() {
     equation = function() {
         result = x * y;
     };
-    if (lastpress != thispress) {
-        display.innerHTML = "x"
-    }
+    display.innerHTML = "x"
     thispress = "clear"
     lastpress = "multby"
 }
@@ -125,9 +117,10 @@ function operator() {
             }
         } else {
             equation();}
+    } else if (y != null) {
+        equation();
     } else {
-        y = null
-        reqy = true
+        reqy = true;
     }
     opclose();
 }
