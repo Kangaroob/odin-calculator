@@ -2,6 +2,7 @@ var lastpress = "clear";
 var thispress = "clear";
 var x = null;
 var y = null;
+var z = null;
 var result = null;
 var equation = function() {
 }
@@ -29,6 +30,14 @@ function Clear() {
 }
 
 function operator() {
+    if (thispress == "equals") {
+        if (y == null) {
+            y = z;
+        }
+        thispress = "clear"
+    } else {
+        z = null;
+    }
     opstart();
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
         if (reqy == true) {
@@ -132,7 +141,10 @@ function opclose() {
 }
 
 function equals() {
+    thispress = "equals";
     operator();
+    z = y;
+    y = null;
     lastpress = "equals"
 }
 
