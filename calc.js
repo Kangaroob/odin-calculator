@@ -1,53 +1,98 @@
-var Q;
-var lastpress;
+var lastpress = "clear";
+var thispress = "clear";
 var x = null;
 var y = null;
 var result = null;
 var equation = function() {
-    Q = Q;
 }
 var str = "";
-var eqlock = false
+var reqy = false
+var inf = "NICE TRY"
 
 function on() {
     operator()
 }
 
-function plus() {
-    operator();
+function clear() {
+    x = null;
+    y = null;
+    result = null;
     equation = function() {
-       result = x + y;
-    };
+    }
+    str = "";
+    operator();
+    thispress = "clear";
+    lastpress = "clear";  
+    reqy = false
+}
+
+function plus() {
+    thispress = "plus"
+    operator();
+    if (reqy != true){
+        equation = function() {
+           result = x + y;
+        }
+    }
+    thispress = "clear"
     lastpress = "plus"
 }
 
 function operator() {
     opstart();
-    equation();
+    if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
+        if (reqy == true) {
+            if (y != null) {
+                equation();
+                reqy = false;
+            }
+        } else {
+            equation();}
+    } else {
+        y = null
+        reqy = true
+    }
     opclose();
 }
 
 function minus() {
+    thispress = "minus"
     operator();
-    equation = function() {
-       result = x - y;
-    };
+    if (reqy != true){
+        equation = function() {
+          result = x - y;
+        };
+    }
+    thispress = "clear"
     lastpress = "minus"
 }
 
 function divby() {
+    thispress = "divby"
     operator();
-    equation = function() {
-       result = x / y;
-    };
+    if (reqy != true){
+        equation = function() {
+            if (y != 0) {
+                result = x / y;
+            } else {
+                result = "inf";
+            }
+        
+        };
+    }
+    thispress = "clear"
     lastpress = "divby"
 }
 
 function mutlby() {
+    thispress = "mutlby"
     operator();
-    equation = function() {
-       result = x * y;
-    };
+    if (reqy != true){
+        equation = function() {
+          result = x * y;
+        };
+    }
+    thispress = "clear"
     lastpress = "mutlby"
 }
 
@@ -58,9 +103,9 @@ function opstart() {
             x = parseInt(str);
         }
     } else if (y == null) {
-        if (str.length == 0) {
+        if (str.length == 0 && reqy != true) {
             y = x
-        } else {
+        } else if (str.length != 0) {
             y = parseInt(str)
         }
     } else if (str.length != 0) {
@@ -72,6 +117,9 @@ function opstart() {
 function opclose() {
     if (x == null) {
         console.log(0);
+    } else if (result == "inf") {
+        console.log(inf)
+        result = null
     } else if (result == null) {
         console.log(x)
     } else {
@@ -79,37 +127,16 @@ function opclose() {
         console.log(x);
     };
     result = null;
-    eqlock = false;
 }
 
 function equals() {
     operator();
-    eqlock = true
     lastpress = "equals"
 }
 
 function num(k) {
-    if (eqlock != true) {
+    if (lastpress != "equals") {
         str += k
         console.log(str)
-        lastpress = "num" + k
     }
 }
-
-on()
-num(3)
-plus()
-num(5)
-equals()
-equals()
-num(2)
-equals()
-equals()
-equals()
-equals()
-plus()
-plus()
-plus()
-num(2)
-plus()
-plus()
