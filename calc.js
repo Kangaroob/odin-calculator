@@ -15,15 +15,18 @@ function on() {
 
 function clear() {
     x = null;
+    console.log(x)
     y = null;
     result = null;
     equation = function() {
+        let Q = Q
     }
+    str = null;
     str = "";
-    operator();
     thispress = "clear";
     lastpress = "clear";  
     reqy = false
+    operator();
 }
 
 function operator() {
@@ -147,10 +150,3 @@ function backspace() {
         console.log(str)
     }
 }
-
-num(5)
-num(5)
-num(5)
-num(5)
-num(5)
-backspace()
