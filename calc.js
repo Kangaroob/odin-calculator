@@ -1,4 +1,4 @@
-const div = document.querySelector('div');
+const display = document.querySelector('.display-text');
 
 var lastpress = "clear";
 var thispress = "clear";
@@ -126,15 +126,15 @@ function opstart() {
 
 function opclose() {
     if (x == null) {
-        div.innerHTML = "0"
+        display.innerHTML = "0"
     } else if (result == "inf") {
-        div.innerHTML = inf;
+        display.innerHTML = inf;
         result = null
     } else if (result == null) {
-        div.innerHTML = x;
+        display.innerHTML = x;
     } else {
         x = result;
-        div.innerHTML = x;
+        display.innerHTML = x;
     };
     result = null;
 }
@@ -151,13 +151,13 @@ function equals() {
 function num(k) {
     if (lastpress != "equals") {
         str += k
-        div.innerHTML = str
+        display.innerHTML = str;
     }
 }
 
 function backspace() {
     if (str.length > 0) {
         str = str.slice(0, -1);
-        console.log(str)
+        display.innerHTML = str;
     }
 }
