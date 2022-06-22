@@ -32,31 +32,6 @@ function Clear() {
     operator();
 }
 
-function operator() {
-    if (thispress == "equals") {
-        if (y == null) {
-            y = z;
-        }
-        thispress = "clear"
-    } else {
-        z = null;
-    }
-    opstart();
-    if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
-        if (reqy == true) {
-            if (y != null) {
-                equation();
-                reqy = false;
-            }
-        } else {
-            equation();}
-    } else {
-        y = null
-        reqy = true
-    }
-    opclose();
-}
-
 function plus() {
     thispress = "plus"
     operator();
@@ -106,6 +81,31 @@ function multby() {
     lastpress = "multby"
 }
 
+function operator() {
+    if (thispress == "equals") {
+        if (y == null) {
+            y = z;
+        }
+        thispress = "clear"
+    } else {
+        z = null;
+    }
+    opstart();
+    if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
+        if (reqy == true) {
+            if (y != null) {
+                equation();
+                reqy = false;
+            }
+        } else {
+            equation();}
+    } else {
+        y = null
+        reqy = true
+    }
+    opclose();
+}
+
 //Give x and y value; clear str
 function opstart() {
    if (x == null) {
@@ -133,13 +133,14 @@ function opclose() {
     } else if (result == null) {
         display.innerHTML = x;
     } else {
-        x = result.slice(0,10);
-        if (result.length > 8) {
-            if (result[8] > 4 && result.length > 9 || result[8] > 5) {
-                result[7] += 1;
-            };
-            result = result.slice(0,9)
-        }
+        console.log(x.length)
+        // x = result.slice(0,10);
+        // if (result.length > 8) {
+        //     if (result[8] > 4 && result.length > 9 || result[8] > 5) {
+        //         result[7] += 1;
+        //     };
+        //     result = result.slice(0,9)
+        // }
         display.innerHTML = x;
     };
     result = null;
