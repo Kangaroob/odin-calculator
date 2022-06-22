@@ -140,3 +140,17 @@ function num(k) {
         console.log(str)
     }
 }
+
+function backspace() {
+    if (str.length > 0) {
+        str = str.slice(0, -1);
+        console.log(str)
+    }
+}
+
+num(5)
+num(5)
+num(5)
+num(5)
+num(5)
+backspace()
