@@ -133,7 +133,8 @@ function opclose() {
     } else if (result == null) {
         display.innerHTML = x;
     } else {
-        console.log(x.length)
+        x = result;
+        console.log(x.length);
         // x = result.slice(0,10);
         // if (result.length > 8) {
         //     if (result[8] > 4 && result.length > 9 || result[8] > 5) {
