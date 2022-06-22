@@ -26,18 +26,6 @@ function clear() {
     reqy = false
 }
 
-function plus() {
-    thispress = "plus"
-    operator();
-    if (reqy != true){
-        equation = function() {
-           result = x + y;
-        }
-    }
-    thispress = "clear"
-    lastpress = "plus"
-}
-
 function operator() {
     opstart();
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
@@ -53,6 +41,18 @@ function operator() {
         reqy = true
     }
     opclose();
+}
+
+function plus() {
+    thispress = "plus"
+    operator();
+    if (reqy != true){
+        equation = function() {
+           result = x + y;
+        }
+    }
+    thispress = "clear"
+    lastpress = "plus"
 }
 
 function minus() {
