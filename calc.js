@@ -94,7 +94,7 @@ function multby() {
     equation = function() {
         result = x * y;
     };
-    display.innerHTML = "x"
+    display.innerHTML += "x"
     thispress = "clear"
     lastpress = "multby"
 }
