@@ -39,7 +39,6 @@ function Clear() {
     x = null;
     y = null;
     z = null;
-    result = null;
     equation = function() {
         var Q = Q
     }
@@ -48,7 +47,12 @@ function Clear() {
     thispress = "clear";
     lastpress = "clear";  
     reqy = false
-    operator();
+    if (result != "inf") {
+        result = null;
+        operator();
+    } else {
+        result=null;
+    }
 }
 
 function plus() {
@@ -152,7 +156,7 @@ function opclose() {
         display.innerHTML = "0"
     } else if (result == "inf") {
         display.innerHTML = inf;
-        result = null
+        Clear();
     } else if (result == null) {
         display.innerHTML = x;
     } else {
