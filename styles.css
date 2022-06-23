@@ -31,6 +31,10 @@ body {
     flex-direction: row;
 }
 
+.nums {
+    /* flex-grow: 3; */
+}
+
 .column {
     flex-direction: column;
 }
