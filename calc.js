@@ -12,7 +12,6 @@ document.addEventListener('keydown', logKey);
 
 function logKey(r) {
     log = r.key;
-    console.log(log);
     switch (returnLog()) {
         case "Control":
             on();
