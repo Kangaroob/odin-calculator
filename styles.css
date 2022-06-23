@@ -1,5 +1,5 @@
 body {
-    font-size: 32pt;
+    font-size: 16pt;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #101520;
 }
@@ -10,7 +10,7 @@ body {
     border-style: solid;
     border-radius: 8px;
     width: 100%;
-    height: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,7 +44,7 @@ body {
     border: #cde;
     border-style: solid;
     color: #000;
-    height: 60px;
+    /* height: 60px; */
     padding: auto 10px 0 0;
     flex: 1 0 auto;
     display: flex;
