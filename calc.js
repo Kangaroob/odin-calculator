@@ -5,6 +5,7 @@ const style = document.querySelector('.style');
 
 // var log;
 
+
 // document.addEventListener('keydown', logKey));
 
 // function logKey(r) {
