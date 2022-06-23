@@ -3,23 +3,59 @@ const display = document.querySelector('.display-text');
 const style = document.querySelector('.style');
 
 
-// var log;
+var log;
+function returnLog() {
+    return log
+}
 
+document.addEventListener('keydown', logKey);
 
-// document.addEventListener('keydown', logKey));
-
-// function logKey(r) {
-//     if (r.key === "9") {
-//         num(9)
-//     } else {
-//     log = r.key;
-    // disp(log);
+function logKey(r) {
+    log = r.key;
+    switch (returnLog()) {
+        case "1":
+            num(1);
+            break;
+        case "2":
+            num(2);
+            break;
+        case "3":
+            num(3);
+            break;
+        case "4":
+            num(4);
+            break;
+        case "5":
+            num(5);
+            break;
+        case "6":
+            num(6);
+            break;
+        case "7":
+            num(7);
+            break;
+        case "8":
+            num(8);
+            break;
+        case "9":
+            num(9);
+            break;
+        case "0":
+            num(0);
+            break;
+        case "8":
+            num(8);
+            break;
+        case "8":
+            num(8);
+            break;
+    };
     // log = String(log)
     // if (log == "9") {
     //     num(9);
     // }
-//     }
-// };
+    // }
+};
 
 var lastpress = "clear";
 var thispress = "clear";
