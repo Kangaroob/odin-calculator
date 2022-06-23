@@ -12,7 +12,47 @@ document.addEventListener('keydown', logKey);
 
 function logKey(r) {
     log = r.key;
+    console.log(log);
     switch (returnLog()) {
+        case "Control":
+            on();
+            break;
+        case "Escape":
+            Clear();
+            break;
+        case "+":
+            plus();
+            break;
+        case "=":
+            plus();
+            break;
+        case "-":
+            minus();
+            break;
+        case "_":
+            minus();
+            break;
+        case "/":
+            divby();
+            break;
+        case "?":
+            divby();
+            break;
+        case "*":
+            multby();
+            break;
+        case "x":
+            multby();
+            break;
+        case "X":
+            multby();
+            break;
+        case "Backspace":
+            backspace();
+            break;
+        case "Enter":
+            equals();
+            break;
         case "1":
             num(1);
             break;
@@ -43,12 +83,14 @@ function logKey(r) {
         case "0":
             num(0);
             break;
-        case "8":
-            num(8);
+        case "~":
+            negative();
             break;
-        case "8":
-            num(8);
+        case "`":
+            negative();
             break;
+        case ".":
+            decimal();
     };
     // log = String(log)
     // if (log == "9") {
