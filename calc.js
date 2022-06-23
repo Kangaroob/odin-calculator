@@ -35,6 +35,7 @@ var dcm = false;
 var neg = false;
 var ONtick = 0;
 var ONnow = false;
+var roundColor = false;
 var inf = "-0.0-";
 
 function on() {
@@ -54,18 +55,25 @@ function on() {
 
 function disp(w) {
     if (reqC == false) {
+        if (roundColor == true) {
+            display.setAttribute("style", "background-color: #7f7");
+        } else {
+            display.setAttribute("style", "background-color: inherit");
+        }
         display.innerHTML = w
     }
     if (display.innerHTML == "NaN" || display.innerHTML == "Infinity") {
         display.innerHTML = inf
         reqC = true
     }
+    roundColor = false;
 }
 
 function dispStr(w) {
     str = String(w)
         let roundx = Number(w)
         if (str.length > 8) {
+            roundColor = true;
             str = roundx.toPrecision(3)
             if (roundx > 9999999) {
                 // str = roundx.toPrecision(4)
