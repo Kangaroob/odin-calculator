@@ -226,7 +226,7 @@ function equals() {
 }
 
 function num(k) {
-    if (lastpress != "equals" && str.length < 8) {
+    if (lastpress != "equals" && str.length < 7) {
         str += k
         disp(str);
     }
