@@ -153,10 +153,17 @@ function dispStr(w) {
         let roundx = Number(w)
         if (str.length > 8) {
             roundColor = true;
-            str = roundx.toPrecision(3)
-            if (roundx > 9999999) {
-                // str = roundx.toPrecision(4)
-            } else for (; str.length > 8 ; str = str.slice(0, -1)) {
+            str = roundx.toPrecision(7)
+            if (str.length > 7) {
+                str = roundx.toPrecision(6)
+            } else if (str.length > 6) {
+                str = roundx.toPrecision(5)
+            } else if (str.length > 5) {
+                str = roundx.toPrecision(4)
+            } else if (str.length > 4) {
+                str = roundx.toPrecision(3)
+            } else 
+            for (; str.length > 8 ; str = str.slice(0, -1)) {
                 if (str[-1] < 6) {
                     str[-2] += 1;
                 }
