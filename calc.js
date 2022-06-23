@@ -46,6 +46,23 @@ function disp(w) {
     }
 }
 
+function dispStr(w) {
+    str = String(w)
+        let roundx = Number(w)
+        if (str.length > 8) {
+            str = roundx.toPrecision(3)
+            if (roundx > 9999999) {
+                // str = roundx.toPrecision(4)
+            } else for (; str.length > 8 ; str = str.slice(0, -1)) {
+                if (str[-1] < 6) {
+                    str[-2] += 1;
+                }
+            }
+        }
+        disp(str);
+        str = ""
+}
+
 function dispAdd(w) {
     if (reqC == false) {
         display.innerHTML += w
@@ -176,7 +193,7 @@ function opclose() {
         disp(inf);
         Clear();
     } else if (result == null) {
-        disp(x);
+        dispStr(x);
     } else {
         // x = Number(result);
         // x = x.toPrecision(4)
@@ -193,16 +210,7 @@ function opclose() {
         // }
         // console.log("x float" + x)
         x = result
-        let stringx = String(x)
-        let roundx = Number(x)
-        if (stringx.length > 8) {
-            if (roundx > 9999999) {
-                roundx = roundx.toPrecision(4)
-            } else {
-                roundx = roundx.toPrecision(7)
-            }
-        }
-        disp(roundx);
+        dispStr(x);
         // x = parseFloat(x)
     };
     result = null;
@@ -251,7 +259,10 @@ function negative() {
         }
     } else if (lastpress == thispress && x != null){ 
         x *= -1
-        disp(x);
+        dispStr(x);
+    } else if (lastpress == "equals" && x != null){ 
+        x *= -1
+        dispStr(x);
     } else {
         str += "-"
         disp(str);
