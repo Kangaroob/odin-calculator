@@ -9,7 +9,7 @@ const display = document.querySelector('.display-text');
 //         num(9)
 //     } else {
 //     log = r.key;
-    // display.innerHTML = log;
+    // disp(log);
     // log = String(log)
     // if (log == "9") {
     //     num(9);
@@ -27,12 +27,29 @@ var equation = function() {
 }
 var str = "";
 var reqy = false
+var reqC = false
 var dcm = false
 var neg = false
 var inf = "-0.0-"
 
 function on() {
     operator()
+}
+
+function disp(w) {
+    if (reqC == false) {
+        display.innerHTML = w
+    }
+    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity") {
+        display.innerHTML = inf
+        reqC = true
+    }
+}
+
+function dispAdd(w) {
+    if (reqC == false) {
+        display.innerHTML += w
+    }
 }
 
 function Clear() {
@@ -47,6 +64,7 @@ function Clear() {
     thispress = "clear";
     lastpress = "clear";  
     reqy = false
+    reqC = false
     if (result != "inf") {
         result = null;
         operator();
@@ -60,10 +78,10 @@ function plus() {
     operator();
     equation = function() {
        result = x + y;
-    }    
-    display.innerHTML += "+"
-    thispress = "clear"
-    lastpress = "plus"
+    };
+    dispAdd("+");
+    thispress = "clear";
+    lastpress = "plus";
 }
 
 function minus() {
@@ -72,7 +90,7 @@ function minus() {
     equation = function() {
       result = x - y;
     };
-    display.innerHTML += "-"
+    dispAdd("-")
     thispress = "clear"
     lastpress = "minus"
 }
@@ -81,13 +99,13 @@ function divby() {
     thispress = "divby"
     operator();
     equation = function() {
-        if (y != 0) {
+        // if (y != 0) {
             result = x / y;
-        } else {
-            result = "inf";
-        }
+        // } else {
+        //     result = "inf";
+        // }
     };
-    display.innerHTML += "/"
+    dispAdd("/")
     thispress = "clear"
     lastpress = "divby"
 }
@@ -98,7 +116,7 @@ function multby() {
     equation = function() {
         result = x * y;
     };
-    display.innerHTML += "x"
+    dispAdd("x")
     thispress = "clear"
     lastpress = "multby"
 }
@@ -153,12 +171,12 @@ function opstart() {
 
 function opclose() {
     if (x == null) {
-        display.innerHTML = "0"
+        disp("0")
     } else if (result == "inf") {
-        display.innerHTML = inf;
+        disp(inf);
         Clear();
     } else if (result == null) {
-        display.innerHTML = x;
+        disp(x);
     } else {
         // x = Number(result);
         // x = x.toPrecision(4)
@@ -184,7 +202,7 @@ function opclose() {
                 roundx = roundx.toPrecision(7)
             }
         }
-        display.innerHTML = roundx;
+        disp(roundx);
         // x = parseFloat(x)
     };
     result = null;
@@ -202,7 +220,7 @@ function equals() {
 function num(k) {
     if (lastpress != "equals" && str.length < 8) {
         str += k
-        display.innerHTML = str;
+        disp(str);
     }
 }
 
@@ -210,7 +228,7 @@ function decimal() {
     if (lastpress != "equals" && str.length < 8 && dcm != true) {
         str += "."
         dcm = true
-        display.innerHTML = str;
+        disp(str);
     }
 }
 
@@ -218,31 +236,31 @@ function negative() {
     if (str.length > 0) {
         if (str == ".") {
             str = "-.";
-            display.innerHTML = str;
+            disp(str);
         } else if (str == "-.") {
             str = ".";
-            display.innerHTML = str;
+            disp(str);
         } else if (str == "-") {
             str = "";
-            display.innerHTML = str;
+            disp(str);
         } else {
             str = parseFloat(str)
             str *= -1
             str = String(str)
-            display.innerHTML = str;
+            disp(str);
         }
     } else if (lastpress == thispress && x != null){ 
         x *= -1
-        display.innerHTML = x;
+        disp(x);
     } else {
         str += "-"
-        display.innerHTML = str;
+        disp(str);
     }
 }
 
 function backspace() {
     if (str.length > 0) {
         str = str.slice(0, -1);
-        display.innerHTML = str;
+        disp(str);
     }
 }
