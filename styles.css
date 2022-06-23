@@ -60,6 +60,7 @@ body {
     display: flex;
     flex: 1 0 auto;
     font-size: larger;
+    height: 17vw;
     border-radius: 8px;
 }
 
