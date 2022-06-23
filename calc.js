@@ -1,5 +1,8 @@
 const display = document.querySelector('.display-text');
 
+const style = document.querySelector('.style');
+
+
 // var log;
 
 // document.addEventListener('keydown', logKey));
@@ -26,14 +29,27 @@ var result = null;
 var equation = function() {
 }
 var str = "";
-var reqy = false
-var reqC = false
-var dcm = false
-var neg = false
-var inf = "-0.0-"
+var reqy = false;
+var reqC = false;
+var dcm = false;
+var neg = false;
+var ONtick = 0;
+var ONnow = false;
+var inf = "-0.0-";
 
 function on() {
-    operator()
+    ONnow = true;
+    operator();
+    ONtick += 1;
+    if (ONtick > 4) {
+        let styleSelect = style.getAttribute("href")
+        if (styleSelect == "./style.css") {
+            style.setAttribute("href", "./deskstyle.css")
+        } else if (styleSelect == "./deskstyle.css") {
+            style.setAttribute("href", "./style.css")
+        }
+    }
+    ONnow = false;
 }
 
 function disp(w) {
@@ -80,8 +96,9 @@ function Clear() {
     str = "";
     thispress = "clear";
     lastpress = "clear";  
-    reqy = false
-    reqC = false
+    reqy = false;
+    reqC = false;
+    ONtick = 0;
     if (result != "inf") {
         result = null;
         operator();
@@ -160,7 +177,10 @@ function operator() {
         equation();
     } else {
         reqy = true;
-    }
+    };
+    if (ONnow != true) {
+        ONtick = 0;
+    };
     opclose();
 }
 
