@@ -3,8 +3,6 @@ Calculator assignment for The ODIN Project
 
 I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (To Do):
 
-    -Keep the text in Display from overflowing (try 1/9999 to see bug)
-
     --- 
 
     -Adjust calc-body to fill viewscreen Height

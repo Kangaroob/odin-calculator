@@ -62,24 +62,61 @@ function disp(w) {
 function dispStr(w) {
     str = String(w)
         let roundx = Number(w)
-        if (str.length > 8) {
-            roundColor = true;
-            str = roundx.toPrecision(7)
-            if (str.length > 7) {
-                str = roundx.toPrecision(6)
-            } else if (str.length > 6) {
-                str = roundx.toPrecision(5)
-            } else if (str.length > 5) {
-                str = roundx.toPrecision(4)
-            } else if (str.length > 4) {
-                str = roundx.toPrecision(3)
-            } else 
-            for (; str.length > 8 ; str = str.slice(0, -1)) {
-                if (str[-1] < 6) {
-                    str[-2] += 1;
+        if (roundx < 1000000000000000000000 && roundx >= 0.00000000000001) {
+            if (str.length > 8) {
+                roundColor = true;
+                if (roundx > 9999999) {
+                    let roundxStr = parseInt(roundx);
+                    roundxStr = String(roundxStr);
+                    if (str[0] == "-") {
+                        str = str[0] + str[1] + "." + str[2] + "e+" + (roundxStr.length - 1);
+                    } else {
+                        str = str[0] + "." + str[1] + str[2] + "e+" + (roundxStr.length - 1);
+                    }
+                } else if (roundx < 0.000001){
+                    roundx = roundx.toPrecision(3);
+                    str = String(roundx)
+                    // let strNo0 = String(roundx)
+                    // strNo0 = str.slice(3,);
+                    // strNo0 = Number(strNo0);
+                    // strNo0 = String(strNo0);
+                    // if (strNo0[1] >=5) {
+                    //     strNo0[0] +=1
+                    // }
+                    // let roundxStr = parseFloat(roundx);
+                    // roundxStr = String(roundxStr);
+                    // if (str[0] == "-") {
+                    //     str = str[0] + strNo0[0] + "." + strNo0[1] + "e+" + (roundxStr.length - 2);
+                    // } else {
+                    //     str = strNo0[0] + "." + strNo0[1] + "e-" + (roundxStr.length - 2);
+                    // }
                 }
+                if (str[8] >=5) {
+                    str[7] +=1
+                }
+            str = str.slice(0,8);
             }
+        } else {
+            roundColor = true;
+            str = roundx.toPrecision(2);
         }
+        // roundColor = true;
+        //     str = roundx.toPrecision(7)
+        //     if (str.length > 7) {
+        //         str = roundx.toPrecision(6)
+        //     } else if (str.length > 6) {
+        //         str = roundx.toPrecision(5)
+        //     } else if (str.length > 5) {
+        //         str = roundx.toPrecision(4)
+        //     } else if (str.length > 4) {
+        //         str = roundx.toPrecision(3)
+        //     } else 
+        //     for (; str.length > 8 ; str = str.slice(0, -1)) {
+        //         if (str[-1] < 6) {
+        //             str[-2] += 1;
+        //         }
+        //     }
+        // }
         disp(str);
         str = ""
 }
