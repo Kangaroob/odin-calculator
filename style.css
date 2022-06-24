@@ -90,7 +90,7 @@ button {
 .topButtons * {
     align-items: stretch;
     color: #123;
-    background-color: #bb0;
+    background-color: #ad0;
 }
 
 .equals {
@@ -104,9 +104,9 @@ button {
 }
 
 .C {
-    background-color: #ff5000;
+    background-color: #ee4000;
 }
 
 .bk {
-    background-color: #d90;
+    background-color: #da0;
 }

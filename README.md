@@ -3,11 +3,10 @@ Calculator assignment for The ODIN Project
 
 I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (To Do):
 
-    --- 
+    -Adjust rounding for negative numbers
 
-    -Adjust calc-body to fill viewscreen Height
+    -Adjust calc-body Height
 
-    ---
     _______
 
     -Make text in Disply auto-resize to keep from overflowing
