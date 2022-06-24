@@ -56,11 +56,11 @@ body {
 .display-text {
     background-color: inherit;
     color: inherit;
-    padding: auto 10px 0 0;
+    /* padding-bottom: 0.1em; */
     display: flex;
     flex: 1 0 auto;
     font-size: larger;
-    height: 17vw;
+    /* height: 17vw; */
     border-radius: 8px;
 }
 

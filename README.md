@@ -9,9 +9,6 @@ I threw this together before actually going through the JavaScript lesssons, to 
         pressed before 7 digits are entered it limits to 6 digits until 
         (-) is removed)
 
-    -Add initial info text to Display
-        +Comment out display-text height specification
-
     ---
 
     -Adjust calc-body to fill viewscreen Height
@@ -37,3 +34,9 @@ I threw this together before actually going through the JavaScript lesssons, to 
     -Possibly use something more concise than Switch for key recognition
 
     -Add key-binding configuration interface
+
+    ---
+
+    -Remove unused/redundant code
+
+    -Organize/rearrange code
