@@ -14,9 +14,6 @@ I threw this together before actually going through the JavaScript lesssons, to 
     -Adjust calc-body to fill viewscreen Height
 
     ---
-
-    -Add key recognition for Delete and Home
-    
     _______
 
     -Make text in Disply auto-resize to keep from overflowing

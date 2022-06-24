@@ -10,94 +10,6 @@ function returnLog() {
 
 document.addEventListener('keydown', logKey);
 
-function logKey(r) {
-    log = r.key;
-    switch (returnLog()) {
-        case "Control":
-            on();
-            break;
-        case "Escape":
-            Clear();
-            break;
-        case "+":
-            plus();
-            break;
-        case "=":
-            plus();
-            break;
-        case "-":
-            minus();
-            break;
-        case "_":
-            minus();
-            break;
-        case "/":
-            divby();
-            break;
-        case "?":
-            divby();
-            break;
-        case "*":
-            multby();
-            break;
-        case "x":
-            multby();
-            break;
-        case "X":
-            multby();
-            break;
-        case "Backspace":
-            backspace();
-            break;
-        case "Enter":
-            equals();
-            break;
-        case "1":
-            num(1);
-            break;
-        case "2":
-            num(2);
-            break;
-        case "3":
-            num(3);
-            break;
-        case "4":
-            num(4);
-            break;
-        case "5":
-            num(5);
-            break;
-        case "6":
-            num(6);
-            break;
-        case "7":
-            num(7);
-            break;
-        case "8":
-            num(8);
-            break;
-        case "9":
-            num(9);
-            break;
-        case "0":
-            num(0);
-            break;
-        case "~":
-            negative();
-            break;
-        case "`":
-            negative();
-            break;
-        case ".":
-            decimal();
-    };
-    // log = String(log)
-    // if (log == "9") {
-    //     num(9);
-    // }
-    // }
-};
-
 var lastpress = "clear";
 var thispress = "clear";
 var x = null;
@@ -388,3 +300,95 @@ function backspace() {
         disp(str);
     }
 }
+
+function logKey(r) {
+    log = r.key;
+    switch (returnLog()) {
+        case "Control":
+            on();
+            break;
+        case "Backspace":
+            backspace();
+            break;
+        case "Home":
+            backspace();
+            break;
+        case "Escape":
+            Clear();
+            break;
+        case "Delete":
+            Clear();
+            break;
+        case "+":
+            plus();
+            break;
+        case "=":
+            plus();
+            break;
+        case "-":
+            minus();
+            break;
+        case "_":
+            minus();
+            break;
+        case "/":
+            divby();
+            break;
+        case "?":
+            divby();
+            break;
+        case "*":
+            multby();
+            break;
+        case "x":
+            multby();
+            break;
+        case "X":
+            multby();
+            break;
+        case "Enter":
+            equals();
+            break;
+        case "1":
+            num(1);
+            break;
+        case "2":
+            num(2);
+            break;
+        case "3":
+            num(3);
+            break;
+        case "4":
+            num(4);
+            break;
+        case "5":
+            num(5);
+            break;
+        case "6":
+            num(6);
+            break;
+        case "7":
+            num(7);
+            break;
+        case "8":
+            num(8);
+            break;
+        case "9":
+            num(9);
+            break;
+        case "0":
+            num(0);
+            break;
+        case "~":
+            negative();
+            break;
+        case "PageUp":
+            negative();
+            break;
+        case "`":
+            negative();
+            break;
+        case ".":
+            decimal();
+    };
+};
