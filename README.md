@@ -1,13 +1,11 @@
 # odin-calculator
 Calculator assignment for The ODIN Project
 
-I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (To Do):
-
-    -Adjust rounding for negative numbers
+This is a calculator I build without using the Math object. I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (To Do):
 
     -Make display change background color only when rounding has occurred
 
-    -Adjust calc-body Height
+    <!-- -Adjust calc-body Height -->
 
     _______
 

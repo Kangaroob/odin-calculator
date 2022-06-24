@@ -61,11 +61,17 @@ function disp(w) {
 
 function dispStr(w) {
     str = String(w)
-        let roundx = Number(w)
-        if (roundx < 1000000000000000000000 && roundx >= 0.00000000000001) {
+        let roundx = Number(w);
+        let roundxNeg = String(roundx);
+        if (roundxNeg[0] == "-") {
+            roundxNeg = roundxNeg.slice(1,);
+        };
+        roundxNeg = Number(roundxNeg)
+        if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
             if (str.length > 8) {
+                console.log(str);
                 roundColor = true;
-                if (roundx > 9999999) {
+                if (roundx > 9999999 && roundxNeg > 9999999) {
                     let roundxStr = parseInt(roundx);
                     roundxStr = String(roundxStr);
                     if (str[0] == "-") {
@@ -73,7 +79,7 @@ function dispStr(w) {
                     } else {
                         str = str[0] + "." + str[1] + str[2] + "e+" + (roundxStr.length - 1);
                     }
-                } else if (roundx < 0.000001){
+                } else if (roundxNeg < 0.000001){
                     roundx = roundx.toPrecision(3);
                     str = String(roundx)
                     // let strNo0 = String(roundx)
