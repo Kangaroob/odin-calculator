@@ -52,7 +52,7 @@ function disp(w) {
         }
         display.innerHTML = w
     }
-    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity") {
+    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
         display.innerHTML = inf
         reqC = true
     }
