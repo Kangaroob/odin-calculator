@@ -11,7 +11,7 @@ body {
     border-style: solid;
     border-radius: 8px;
     width: 100%;
-    /* height: -webkit-fill-available; */
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
