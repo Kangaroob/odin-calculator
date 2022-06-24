@@ -5,12 +5,16 @@ I threw this together before actually going through the JavaScript lesssons, to 
 
     -Adjust rounding for negative numbers
 
+    -Make display change background color only when rounding has occurred
+
     -Adjust calc-body Height
 
     _______
 
     -Make text in Disply auto-resize to keep from overflowing
         +Allow longer str length (to input longer numbers)
+
+    -Maybe replace instances of parseFloat() with Number()?
     
     ---
 
@@ -24,6 +28,8 @@ I threw this together before actually going through the JavaScript lesssons, to 
     -Possibly use something more concise than Switch for key recognition
 
     -Add key-binding configuration interface
+
+    -Maybe make it so clicking on buttons doesn't leave them focused (i.e. if you click + and then press Enter the calculator will run equals() instead of plus() )?
 
     ---
 
