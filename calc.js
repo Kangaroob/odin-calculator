@@ -251,7 +251,8 @@ function equals() {
 }
 
 function num(k) {
-    if (lastpress != "equals" && str.length < 7) {
+    if (lastpress != "equals" && str.length < 8) {
+        if (str.length < 7 || parseFloat(str) < 0)
         str += k
         disp(str);
     }
@@ -297,9 +298,13 @@ function negative() {
 function backspace() {
     if (str.length > 0) {
         str = str.slice(0, -1);
-        disp(str);
+        if (str.length > 0) {
+            disp(str);
+        } else {
+            disp("0");
+        }
     }
-}
+};
 
 function logKey(r) {
     log = r.key;

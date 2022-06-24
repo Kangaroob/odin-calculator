@@ -5,10 +5,6 @@ I threw this together before actually going through the JavaScript lesssons, to 
 
     -Keep the text in Display from overflowing (try 1/9999 to see bug)
 
-    -Allow 7-digit number in str after (-) is added (currently if (-) is
-        pressed before 7 digits are entered it limits to 6 digits until 
-        (-) is removed)
-
     --- 
 
     -Adjust calc-body to fill viewscreen Height
