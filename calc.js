@@ -275,7 +275,7 @@ function negative() {
             disp(str);
         } else if (str == "-") {
             str = "";
-            disp(str);
+            disp("0");
         } else {
             str = parseFloat(str)
             str *= -1
