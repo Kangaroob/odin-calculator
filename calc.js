@@ -69,7 +69,7 @@ function dispStr(w) {
         roundxNeg = Number(roundxNeg)
         if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
             if (str.length > 8) {
-                console.log(str);
+                // console.log("yes")
                 roundColor = true;
                 if (roundx > 9999999 && roundxNeg > 9999999) {
                     let roundxStr = parseInt(roundx);
@@ -213,6 +213,7 @@ function operator() {
         z = null;
     }
     opstart();
+    // console.log(x + " x y " + y);
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
         if (reqy == true) {
             if (y != null) {
