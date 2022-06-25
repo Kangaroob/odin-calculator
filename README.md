@@ -36,7 +36,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Automatically display Mobile site when viewed from Mobile device, 
     and Desktop when viewed from Desktop device
     
-    -Add Info button/screen
+    -Add Info screen
 
     -Make text resize with viewscreen height as well as width (so whole calculator can be seen, for example, when mobile device is flipped from portrait to landscape) 
 
