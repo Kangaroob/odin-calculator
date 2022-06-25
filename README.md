@@ -5,7 +5,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the ON button 5 times in a row to change the display size. The default is made to fit the screen on mobile devices
 
---The calculations are as accurate as can be expected with 64-bit floating point numbers. No workarounds are currently implemented. If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur to the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
+--The calculations are as accurate as can be expected with 64-bit floating point numbers. No workarounds are currently implemented. If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
 --Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop, and an Enter key is readily accessible from most num pads. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
     -Control -> ON
