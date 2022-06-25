@@ -5,7 +5,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the ON button 5 times in a row to change the display size. The default is made to fit the screen on mobile devices
 
--Click or tap the ℹ button 5 times in a row to see this page
+-Click or tap the i button 5 times in a row to see this page
 
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. No workarounds are currently implemented. If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
@@ -16,7 +16,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Backspace or Home -> Backspace ←
     -Escape or Delete -> Clear C
     -x or X or * -> Multiply x
-    -I -> README ℹ
+    -I -> README i
 
 --I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (ToDo):
     
@@ -53,3 +53,5 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Remove unused/redundant code
 
     -Organize/rearrange code
+
+    -Do something about so much of style.css and deskstyle.css being duplicated. Maybe use JS to change the values of a single stylesheet, or put common css on one sheet and add another swappable sheet with the unique css options
