@@ -7,7 +7,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. No workarounds are currently implemented. If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
---Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop, and an Enter key is readily accessible from most num pads. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
+--Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop, and an Enter key is accessible from many number pads. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
     -Control -> ON
     -Enter -> Equals =
     -` or ~ or PageUp -> Negative (-)
@@ -22,7 +22,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     
     _______
 
-    -Make text in Disply auto-resize to keep from overflowing
+    -Make text in Display auto-resize to keep from overflowing
         +Allow longer str length (to input longer numbers)
 
     -Floating point math is inexact. Maybe find a workaround to make, for instance, 0.00001 / 10 equal 0.000001 instead of 0.0000010000000000000002
