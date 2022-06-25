@@ -64,12 +64,12 @@ function dplus(ddd) {
     str1 = str.slice(0,ddd);
     str2 = str.slice(d2,);
     if (ddd == 0 && str2 % 1 == 0) {
-        console.log("yes")
+        // console.log("yes")
         sd = sd + ".";
     };
-    console.log("str1 " + str1);
-    console.log(sd);
-    console.log("str2 " + str2);
+    // console.log("str1 " + str1);
+    // console.log(sd);
+    // console.log("str2 " + str2);
     str = "" + str1 + sd + str2;
 }
 
@@ -128,7 +128,7 @@ function dispStr(w) {
             if (str.length > 8) {
                 // console.log("yes")
                 roundColor = true;
-                console.log("test2");
+                // console.log("test2");
                 if (roundxNeg > 9999999) {
                     let roundxStr = parseInt(roundx);
                     roundxStr = String(roundxStr);
@@ -156,15 +156,15 @@ function dispStr(w) {
                     // }
                 }
                 if (str[8] >= 5) {
-                console.log(str);
+                // console.log(str);
                     rrround(7);
-                console.log(str);
+                // console.log(str);
                 }
             str = str.slice(0,8);
             }
         } else {
             roundColor = true;
-            console.log("test1");
+            // console.log("test1");
             str = roundx.toPrecision(2);
         }
         // roundColor = true;
