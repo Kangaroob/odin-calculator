@@ -1,7 +1,7 @@
 # odin-calculator
 Calculator assignment for The ODIN Project
 
-This is a calculator I built in JavaScript without using the Math object. I did my best to emulate the behaviour of a calculator I used in my childhood. For example, pressing "5 + + + + =" will calculate to 25.
+This is a calculator I built in JavaScript without using the Math object. I did my best to emulate the behaviour of a calculator I used in my childhood. For example, pressing "5 + + + + =" will calculate to 25. I really like it!
 
 --Click or tap the ON button 5 times in a row to change the display size. The default is made to fit the screen on mobile devices
 
