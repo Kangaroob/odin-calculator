@@ -32,6 +32,8 @@ var dcm = false;
 var neg = false;
 var ONtick = 0;
 var ONnow = false;
+var infotick = 0;
+var infonow = false;
 var roundColor = false;
 var inf = "-0.0-";
 
@@ -51,7 +53,13 @@ function on() {
 }
 
 function README() {
-    window.location.href = "./README.md";
+    // infonow = true;
+    // operator();
+    // infotick += 1;
+    // if (infotick > 2) {
+        window.location.href = "./README.md";
+    // }
+    // infonow = false;
 }
 
 function d0(ddd) {
@@ -220,6 +228,7 @@ function Clear() {
     reqy = false;
     reqC = false;
     ONtick = 0;
+    infotick = 0;
     if (result != "inf") {
         result = null;
         operator();
@@ -303,6 +312,9 @@ function operator() {
     if (ONnow != true) {
         ONtick = 0;
     };
+    // if (infonow != true) {
+    //     infotick = 0;
+    // };
     opclose();
 }
 
