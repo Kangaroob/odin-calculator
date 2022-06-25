@@ -524,9 +524,12 @@ function logKey(r) {
             break;
         case ".":
             decimal();
+            break;
         case "i":
             README();
+            break;
         case "I":
             README();
+            break;
         };
 };
