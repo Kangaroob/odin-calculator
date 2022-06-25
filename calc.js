@@ -1,4 +1,6 @@
 const display = document.querySelector('.display-text');
+const displaybig = document.querySelector('.display');
+
 
 const style = document.querySelector('.style');
 
@@ -104,8 +106,12 @@ function disp(w) {
     if (reqC == false) {
         if (roundColor == true) {
             display.setAttribute("style", "background-color: #7f7");
+            displaybig.setAttribute("style", "background-color: #7f7");
+
         } else {
             display.setAttribute("style", "background-color: inherit");
+            displaybig.setAttribute("style", "background-color: #777");
+
         }
         display.innerHTML = w
     }
@@ -164,7 +170,7 @@ function dispStr(w) {
                 }
             str = str.slice(0,8);
             }
-        } else {
+        } else if (roundxNeg != 0){
             roundColor = true;
             console.log("test1");
             str = roundx.toPrecision(2);
