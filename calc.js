@@ -524,7 +524,9 @@ function logKey(r) {
             break;
         case ".":
             decimal();
+        case "i":
+            README();
         case "I":
             README();
-    };
+        };
 };
