@@ -16,6 +16,8 @@ var lastpress = "clear";
 var thispress = "clear";
 var x = null;
 var y = null;
+var tempx;
+var tempy;
 var z = null;
 var dd;
 var sd;
@@ -241,7 +243,10 @@ function plus() {
     thispress = "plus"
     operator();
     equation = function() {
-       result = x + y;
+        tempx = 100 * x;
+        tempy = 100 * y;
+        result = tempx + tempy;
+        result = result / 100;
     };
     dispAdd("+");
     thispress = "clear";
@@ -252,7 +257,10 @@ function minus() {
     thispress = "minus"
     operator();
     equation = function() {
-      result = x - y;
+        tempx = 100 * x;
+        tempy = 100 * y;
+        result = tempx - tempy;
+        result = result / 100;
     };
     dispAdd("-")
     thispress = "clear"
@@ -263,11 +271,11 @@ function divby() {
     thispress = "divby"
     operator();
     equation = function() {
-        // if (y != 0) {
-            result = x / y;
-        // } else {
-        //     result = "inf";
-        // }
+        // tempx = 100 * x;
+        // tempy = 100 * y;
+        // result = tempx / tempy;
+        // result = result / 10000;
+        result = x / y;
     };
     dispAdd("/")
     thispress = "clear"
@@ -278,7 +286,10 @@ function multby() {
     thispress = "multby"
     operator();
     equation = function() {
-        result = x * y;
+        tempx = 100 * x;
+        tempy = 100 * y;
+        result = tempx * tempy;
+        result = result / 10000;
     };
     dispAdd("x")
     thispress = "clear"
@@ -295,7 +306,7 @@ function operator() {
         z = null;
     }
     opstart();
-    // console.log(x + " x y " + y);
+    console.log(x + " x y " + y);
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
         if (reqy == true) {
             if (y != null) {
@@ -315,6 +326,7 @@ function operator() {
     if (infonow != true) {
         infotick = 0;
     };
+    console.log("result " + result);
     opclose();
 }
 
