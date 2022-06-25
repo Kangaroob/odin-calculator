@@ -16,6 +16,10 @@ var x = null;
 var y = null;
 var z = null;
 var dd;
+var sd;
+var str1;
+var str2;
+var d2;
 var result = null;
 var equation = function() {
 }
@@ -44,28 +48,54 @@ function on() {
     ONnow = false;
 }
 
+function d0(ddd) {
+    sd = 0;
+    str1 = str.slice(0,ddd);
+    str2 = str.slice(d2,);
+    // console.log("str1 " + str1);
+    // console.log(sd);
+    // console.log("str2 " + str2);
+    str = "" + str1 + sd + str2;
+}
+
+function dplus(ddd) {
+    sd = parseInt(str[ddd]);
+    sd += 1;
+    str1 = str.slice(0,ddd);
+    str2 = str.slice(d2,);
+    if (ddd == 0 && str2 % 1 == 0) {
+        console.log("yes")
+        sd = sd + ".";
+    };
+    console.log("str1 " + str1);
+    console.log(sd);
+    console.log("str2 " + str2);
+    str = "" + str1 + sd + str2;
+}
+
 function rrround(d) {
     if (d>0) {
         dd = d - 1;
+        d2 = d + 1;
         if (str[d] == ".") {
             rrround(dd)
         } else if (str[d] == 9) {
-            str[d] == 0;
+            d0(d);
             rrround(dd)
         } else if (str[d] >= 0 && str[d] <=8){
-            str[d] += 1;
+            dplus(d);
         };
     } else if (d == 0) {
         if (str[d] >= 0 && str[d] <=8){
-            str[d] += 1;
+            dplus(d);
         } else if (str[d] == 9) {
-            str[d] = 0;
-            str = "1" + str;
+            str.slice(1,);
+            str = "10" + str;
         } else if (str[d] == ".") {
             str = "1" + str;
         } else if (str[d] == "-") {
-            str[d] = 1;
-            str = "-" + str;
+            str.slice(1,)
+            str = "-1" + str;
         }
     }
 };
@@ -98,7 +128,8 @@ function dispStr(w) {
             if (str.length > 8) {
                 // console.log("yes")
                 roundColor = true;
-                if (roundx > 9999999 && roundxNeg > 9999999) {
+                console.log("test2");
+                if (roundxNeg > 9999999) {
                     let roundxStr = parseInt(roundx);
                     roundxStr = String(roundxStr);
                     if (str[0] == "-") {
@@ -125,12 +156,15 @@ function dispStr(w) {
                     // }
                 }
                 if (str[8] >= 5) {
+                console.log(str);
                     rrround(7);
+                console.log(str);
                 }
             str = str.slice(0,8);
             }
         } else {
             roundColor = true;
+            console.log("test1");
             str = roundx.toPrecision(2);
         }
         // roundColor = true;
