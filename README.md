@@ -21,6 +21,8 @@ This is a calculator I build without using the Math object. I threw this togethe
     
     -Add Info button/screen
 
+    -Make text resize with viewscreen height as well as width (so whole calculator can be seen, for example, when mobile device is flipped from portrait to landscape) 
+
     ---
 
     -Possibly use something more concise than Switch for key recognition
