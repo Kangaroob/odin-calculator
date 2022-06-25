@@ -14,6 +14,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Backspace or Home -> Backspace ←
     -Escape or Delete -> Clear C
     -x or X or * -> Multiply x
+    -I -> README 🛈
 
 --I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (ToDo):
     

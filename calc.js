@@ -50,6 +50,10 @@ function on() {
     ONnow = false;
 }
 
+function README() {
+    window.location.href = "./README.md";
+}
+
 function d0(ddd) {
     sd = 0;
     str1 = str.slice(0,ddd);
@@ -508,5 +512,7 @@ function logKey(r) {
             break;
         case ".":
             decimal();
+        case "I":
+            README();
     };
 };
