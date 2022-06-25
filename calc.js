@@ -53,13 +53,13 @@ function on() {
 }
 
 function README() {
-    // infonow = true;
-    // operator();
-    // infotick += 1;
-    // if (infotick > 2) {
+    infonow = true;
+    operator();
+    infotick += 1;
+    if (infotick > 4) {
         window.location.href = "./README.md";
-    // }
-    // infonow = false;
+    }
+    infonow = false;
 }
 
 function d0(ddd) {
@@ -312,9 +312,9 @@ function operator() {
     if (ONnow != true) {
         ONtick = 0;
     };
-    // if (infonow != true) {
-    //     infotick = 0;
-    // };
+    if (infonow != true) {
+        infotick = 0;
+    };
     opclose();
 }
 
