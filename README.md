@@ -5,7 +5,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the ON button 5 times in a row to change the display size. The default is made to fit the screen on mobile devices
 
--Click or tap the i button 5 times in a row to see this page
+--Click or tap the i button 5 times in a row to see this page
 
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. No workarounds are currently implemented. If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
