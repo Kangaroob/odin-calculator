@@ -15,6 +15,7 @@ var thispress = "clear";
 var x = null;
 var y = null;
 var z = null;
+var dd;
 var result = null;
 var equation = function() {
 }
@@ -42,6 +43,32 @@ function on() {
     }
     ONnow = false;
 }
+
+function rrround(d) {
+    if (d>0) {
+        dd = d - 1;
+        if (str[d] == ".") {
+            rrround(dd)
+        } else if (str[d] == 9) {
+            str[d] == 0;
+            rrround(dd)
+        } else if (str[d] >= 0 && str[d] <=8){
+            str[d] += 1;
+        };
+    } else if (d == 0) {
+        if (str[d] >= 0 && str[d] <=8){
+            str[d] += 1;
+        } else if (str[d] == 9) {
+            str[d] = 0;
+            str = "1" + str;
+        } else if (str[d] == ".") {
+            str = "1" + str;
+        } else if (str[d] == "-") {
+            str[d] = 1;
+            str = "-" + str;
+        }
+    }
+};
 
 function disp(w) {
     if (reqC == false) {
@@ -97,8 +124,8 @@ function dispStr(w) {
                     //     str = strNo0[0] + "." + strNo0[1] + "e-" + (roundxStr.length - 2);
                     // }
                 }
-                if (str[8] >=5) {
-                    str[7] +=1
+                if (str[8] >= 5) {
+                    rrround(7);
                 }
             str = str.slice(0,8);
             }
