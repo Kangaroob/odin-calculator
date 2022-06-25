@@ -16,6 +16,8 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -x or X or * -> Multiply x
     -I -> README 🛈
 
+-The info button requires a double click. This may change pending testing on mobile devices, or it might stay this way regardless until I add an actual info screen.
+
 --I threw this together before actually going through the JavaScript lesssons, to see if I could do it, so I'm sure there are ways to optimize this code. For example (ToDo):
     
     _______
