@@ -50,6 +50,8 @@ function on() {
         } else if (styleSelect == "./deskstyle.css") {
             style.setAttribute("href", "./style.css")
         }
+        display.innerHTML = "i 5x = info"
+
     }
     ONnow = false;
 }
