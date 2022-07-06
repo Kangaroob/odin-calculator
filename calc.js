@@ -14,36 +14,35 @@ document.addEventListener('keydown', logKey);
 
 var lastpress = "clear";
 var thispress = "clear";
-var x = null;
-var y = null;
-var tempx;
-var tempy;
-var z = null;
+var operandX = null;
+var operandY = null;
+var tempX;
+var tempY;
+var operandZ = null;
 var lowerNumber;
 var scratchNum2;
-var str1;
-var str2;
+var stringStart;
+var stringEnd;
 var higherNumber;
 var result = null;
 var equation = function() {
 }
-var str = "";
-var reqy = false;
-var reqC = false;
-var dcm = false;
-var neg = false;
-var ONtick = 0;
-var ONnow = false;
-var infotick = 0;
-var infonow = false;
+var heldString = "";
+var requireY = false;
+var requireClear = false;
+var isDecimal = false;
+var onTick = 0;
+var onNow = false;
+var infoTick = 0;
+var infoNow = false;
 var roundColor = false;
-var inf = "-0.0-";
+var infinityDisplay = "-0.0-";
 
 function pressON() {
-    ONnow = true;
+    onNow = true;
     operate();
-    ONtick += 1;
-    if (ONtick > 4) {
+    onTick += 1;
+    if (onTick > 4) {
         let styleSelect = style.getAttribute("href")
         if (styleSelect == "./style.css") {
             style.setAttribute("href", "./deskstyle.css")
@@ -53,73 +52,73 @@ function pressON() {
         display.innerHTML = "i 5x = info"
 
     }
-    ONnow = false;
+    onNow = false;
 }
 
 function goToREADME() {
-    infonow = true;
+    infoNow = true;
     operate();
-    infotick += 1;
-    if (infotick > 4) {
+    infoTick += 1;
+    if (infoTick > 4) {
         window.location.href = "./README.md";
     }
-    infonow = false;
+    infoNow = false;
 }
 
 function roundUp10(scratchNumber) {
     scratchNum2 = 0;
-    str1 = str.slice(0,scratchNumber);
-    str2 = str.slice(higherNumber,);
-    // console.log("str1 " + str1);
+    stringStart = heldString.slice(0,scratchNumber);
+    stringEnd = heldString.slice(higherNumber,);
+    // console.log("stringStart " + stringStart);
     // console.log(scratchNum2);
-    // console.log("str2 " + str2);
-    str = "" + str1 + scratchNum2 + str2;
+    // console.log("stringEnd " + stringEnd);
+    heldString = "" + stringStart + scratchNum2 + stringEnd;
 }
 
 function roundUp(scratchNumber) {
-    scratchNum2 = parseInt(str[scratchNumber]);
+    scratchNum2 = parseInt(heldString[scratchNumber]);
     scratchNum2 += 1;
-    str1 = str.slice(0,scratchNumber);
-    str2 = str.slice(higherNumber,);
-    if (scratchNumber == 0 && str2 % 1 == 0) {
+    stringStart = heldString.slice(0,scratchNumber);
+    stringEnd = heldString.slice(higherNumber,);
+    if (scratchNumber == 0 && stringEnd % 1 == 0) {
         console.log("yes")
         scratchNum2 = scratchNum2 + ".";
     };
-    console.log("str1 " + str1);
+    console.log("stringStart " + stringStart);
     console.log(scratchNum2);
-    console.log("str2 " + str2);
-    str = "" + str1 + scratchNum2 + str2;
+    console.log("stringEnd " + stringEnd);
+    heldString = "" + stringStart + scratchNum2 + stringEnd;
 }
 
 function roundNumber(currentNumber) {
     if (currentNumber>0) {
         lowerNumber = currentNumber - 1;
         higherNumber = currentNumber + 1;
-        if (str[currentNumber] == ".") {
+        if (heldString[currentNumber] == ".") {
             roundNumber(lowerNumber)
-        } else if (str[currentNumber] == 9) {
+        } else if (heldString[currentNumber] == 9) {
             roundUp10(currentNumber);
             roundNumber(lowerNumber)
-        } else if (str[currentNumber] >= 0 && str[currentNumber] <=8){
+        } else if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
             roundUp(currentNumber);
         };
     } else if (currentNumber == 0) {
-        if (str[currentNumber] >= 0 && str[currentNumber] <=8){
+        if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
             roundUp(currentNumber);
-        } else if (str[currentNumber] == 9) {
-            str.slice(1,);
-            str = "10" + str;
-        } else if (str[currentNumber] == ".") {
-            str = "1" + str;
-        } else if (str[currentNumber] == "-") {
-            str.slice(1,)
-            str = "-1" + str;
+        } else if (heldString[currentNumber] == 9) {
+            heldString.slice(1,);
+            heldString = "10" + heldString;
+        } else if (heldString[currentNumber] == ".") {
+            heldString = "1" + heldString;
+        } else if (heldString[currentNumber] == "-") {
+            heldString.slice(1,)
+            heldString = "-1" + heldString;
         }
     }
 };
 
 function showOnDisplay(currentString) {
-    if (reqC == false) {
+    if (requireClear == false) {
         if (roundColor == true) {
             display.setAttribute("style", "background-color: #7f7");
             displaybig.setAttribute("style", "background-color: #7f7");
@@ -132,14 +131,14 @@ function showOnDisplay(currentString) {
         display.innerHTML = currentString
     }
     if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
-        display.innerHTML = inf
-        reqC = true
+        display.innerHTML = infinityDisplay
+        requireClear = true
     }
     roundColor = false;
 }
 
 function prepareForDisplay(currentString) {
-    str = String(currentString)
+    heldString = String(currentString)
         let roundx = Number(currentString);
         let roundxNeg = String(roundx);
         if (roundxNeg[0] == "-") {
@@ -147,23 +146,23 @@ function prepareForDisplay(currentString) {
         };
         roundxNeg = Number(roundxNeg)
         if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
-            if (str.length > 8) {
+            if (heldString.length > 8) {
                 // console.log("yes")
                 roundColor = true;
                 console.log("test2");
                 if (roundxNeg > 9999999) {
                     let roundxStr = parseInt(roundx);
                     roundxStr = String(roundxStr);
-                    if (str[0] == "-") {
-                        str = str[0] + str[1] + "." + str[2] + "e+" + (roundxStr.length - 1);
+                    if (heldString[0] == "-") {
+                        heldString = heldString[0] + heldString[1] + "." + heldString[2] + "e+" + (roundxStr.length - 1);
                     } else {
-                        str = str[0] + "." + str[1] + str[2] + "e+" + (roundxStr.length - 1);
+                        heldString = heldString[0] + "." + heldString[1] + heldString[2] + "e+" + (roundxStr.length - 1);
                     }
                 } else if (roundxNeg < 0.000001){
                     roundx = roundx.toPrecision(3);
-                    str = String(roundx)
+                    heldString = String(roundx)
                     // let strNo0 = String(roundx)
-                    // strNo0 = str.slice(3,);
+                    // strNo0 = heldString.slice(3,);
                     // strNo0 = Number(strNo0);
                     // strNo0 = String(strNo0);
                     // if (strNo0[1] >=5) {
@@ -171,68 +170,68 @@ function prepareForDisplay(currentString) {
                     // }
                     // let roundxStr = parseFloat(roundx);
                     // roundxStr = String(roundxStr);
-                    // if (str[0] == "-") {
-                    //     str = str[0] + strNo0[0] + "." + strNo0[1] + "e+" + (roundxStr.length - 2);
+                    // if (heldString[0] == "-") {
+                    //     heldString = heldString[0] + strNo0[0] + "." + strNo0[1] + "e+" + (roundxStr.length - 2);
                     // } else {
-                    //     str = strNo0[0] + "." + strNo0[1] + "e-" + (roundxStr.length - 2);
+                    //     heldString = strNo0[0] + "." + strNo0[1] + "e-" + (roundxStr.length - 2);
                     // }
                 } else {
-                    str = str.slice(0,8);
+                    heldString = heldString.slice(0,8);
                 }
-                if (str[8] >= 5) {
-                console.log(str);
+                if (heldString[8] >= 5) {
+                console.log(heldString);
                     roundNumber(7);
-                console.log(str);
+                console.log(heldString);
                 }
-            str = str.slice(0,8);
+            heldString = heldString.slice(0,8);
             }
         } else if (roundxNeg != 0){
             roundColor = true;
             console.log("test1");
-            str = roundx.toPrecision(2);
+            heldString = roundx.toPrecision(2);
         }
         // roundColor = true;
-        //     str = roundx.toPrecision(7)
-        //     if (str.length > 7) {
-        //         str = roundx.toPrecision(6)
-        //     } else if (str.length > 6) {
-        //         str = roundx.toPrecision(5)
-        //     } else if (str.length > 5) {
-        //         str = roundx.toPrecision(4)
-        //     } else if (str.length > 4) {
-        //         str = roundx.toPrecision(3)
+        //     heldString = roundx.toPrecision(7)
+        //     if (heldString.length > 7) {
+        //         heldString = roundx.toPrecision(6)
+        //     } else if (heldString.length > 6) {
+        //         heldString = roundx.toPrecision(5)
+        //     } else if (heldString.length > 5) {
+        //         heldString = roundx.toPrecision(4)
+        //     } else if (heldString.length > 4) {
+        //         heldString = roundx.toPrecision(3)
         //     } else 
-        //     for (; str.length > 8 ; str = str.slice(0, -1)) {
-        //         if (str[-1] < 6) {
-        //             str[-2] += 1;
+        //     for (; heldString.length > 8 ; heldString = heldString.slice(0, -1)) {
+        //         if (heldString[-1] < 6) {
+        //             heldString[-2] += 1;
         //         }
         //     }
         // }
-        showOnDisplay(str);
-        str = ""
+        showOnDisplay(heldString);
+        heldString = ""
 }
 
 function showDisplayExtend(currentString) {
-    if (reqC == false) {
+    if (requireClear == false) {
         display.innerHTML += currentString
     }
 }
 
 function clearDisplay() {
-    x = null;
-    y = null;
-    z = null;
+    operandX = null;
+    operandY = null;
+    operandZ = null;
     equation = function() {
         var Q = Q
     }
-    str = null;
-    str = "";
+    heldString = null;
+    heldString = "";
     thispress = "clear";
     lastpress = "clear";  
-    reqy = false;
-    reqC = false;
-    ONtick = 0;
-    infotick = 0;
+    requireY = false;
+    requireClear = false;
+    onTick = 0;
+    infoTick = 0;
     if (result != "inf") {
         result = null;
         operate();
@@ -245,9 +244,9 @@ function operatePlus() {
     thispress = "plus"
     operate();
     equation = function() {
-        tempx = 100 * x;
-        tempy = 100 * y;
-        result = tempx + tempy;
+        tempX = 100 * operandX;
+        tempY = 100 * operandY;
+        result = tempX + tempY;
         result = result / 100;
     };
     showDisplayExtend("+");
@@ -259,9 +258,9 @@ function operateMinus() {
     thispress = "minus"
     operate();
     equation = function() {
-        tempx = 100 * x;
-        tempy = 100 * y;
-        result = tempx - tempy;
+        tempX = 100 * operandX;
+        tempY = 100 * operandY;
+        result = tempX - tempY;
         result = result / 100;
     };
     showDisplayExtend("-")
@@ -273,11 +272,11 @@ function operateDivide() {
     thispress = "divby"
     operate();
     equation = function() {
-        // tempx = 100 * x;
-        // tempy = 100 * y;
-        // result = tempx / tempy;
+        // tempX = 100 * operandX;
+        // tempY = 100 * operandY;
+        // result = tempX / tempY;
         // result = result / 10000;
-        result = x / y;
+        result = operandX / operandY;
     };
     showDisplayExtend("/")
     thispress = "clear"
@@ -288,103 +287,103 @@ function operateMultiply() {
     thispress = "multby"
     operate();
     equation = function() {
-        tempx = 100 * x;
-        tempy = 100 * y;
-        result = tempx * tempy;
+        tempX = 100 * operandX;
+        tempY = 100 * operandY;
+        result = tempX * tempY;
         result = result / 10000;
     };
-    showDisplayExtend("x")
+    showDisplayExtend("operandX")
     thispress = "clear"
     lastpress = "multby"
 }
 
 function operate() {
     if (thispress == "equals") {
-        if (y == null) {
-            y = z;
+        if (operandY == null) {
+            operandY = operandZ;
         }
         thispress = "clear"
     } else {
-        z = null;
+        operandZ = null;
     }
     assignOperand();
     clearString();
-    console.log(x + " x y " + y);
+    console.log(operandX + " operandX operandY " + operandY);
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
-        if (reqy == true) {
-            if (y != null) {
+        if (requireY == true) {
+            if (operandY != null) {
                 equation();
-                reqy = false;
+                requireY = false;
             }
         } else {
             equation();}
-    } else if (y != null) {
+    } else if (operandY != null) {
         equation();
     } else {
-        reqy = true;
+        requireY = true;
     };
-    if (ONnow != true) {
-        ONtick = 0;
+    if (onNow != true) {
+        onTick = 0;
     };
-    if (infonow != true) {
-        infotick = 0;
+    if (infoNow != true) {
+        infoTick = 0;
     };
     console.log("result " + result);
     showResult();
     result = null;
 }
 
-//Give x and y value; clear str
+//Give operandX and operandY value; clear heldString
 function assignOperand() {
-    if (str == "-" || str == "." || str == "-.") {
-        str = 0;
+    if (heldString == "-" || heldString == "." || heldString == "-.") {
+        heldString = 0;
     }
-   if (x == null) {
-        if (str.length > 0) {
-            x = parseFloat(str);
+   if (operandX == null) {
+        if (heldString.length > 0) {
+            operandX = parseFloat(heldString);
         }
-    } else if (y == null) {
-        if (str.length == 0 && reqy != true) {
-            y = x
-        } else if (str.length != 0) {
-            y = parseFloat(str)
+    } else if (operandY == null) {
+        if (heldString.length == 0 && requireY != true) {
+            operandY = operandX
+        } else if (heldString.length != 0) {
+            operandY = parseFloat(heldString)
         }
-    } else if (str.length != 0) {
-        y = parseFloat(str)
+    } else if (heldString.length != 0) {
+        operandY = parseFloat(heldString)
     }
-    dcm = false
+    isDecimal = false
 }
 
 function clearString() {
-    str = ""
+    heldString = ""
 }
 
 function showResult() {
-    if (x == null) {
+    if (operandX == null) {
         showOnDisplay("0")
     } else if (result == "inf") {
-        showOnDisplay(inf);
+        showOnDisplay(infinityDisplay);
         clearDisplay();
     } else if (result == null) {
-        prepareForDisplay(x);
+        prepareForDisplay(operandX);
     } else {
-        // x = Number(result);
-        // x = x.toPrecision(4)
-        // console.log(x.length);
-        // x = result.slice(0,10);
-        // if (x.length > 9) {
-            // x = x.slice(0, 10);
-        // console.log("x string " + x);
+        // operandX = Number(result);
+        // operandX = operandX.toPrecision(4)
+        // console.log(operandX.length);
+        // operandX = result.slice(0,10);
+        // if (operandX.length > 9) {
+            // operandX = operandX.slice(0, 10);
+        // console.log("operandX string " + operandX);
 
         //     if (result[8] > 4 && result.length > 9 || result[8] > 5) {
         //         result[7] += 1;
             // };
         //     result = result.slice(0,9)
         // }
-        // console.log("x float" + x)
-        x = result
-        prepareForDisplay(x);
-        // x = parseFloat(x)
+        // console.log("operandX float" + operandX)
+        operandX = result
+        prepareForDisplay(operandX);
+        // operandX = parseFloat(operandX)
     };
 }
 
@@ -395,62 +394,62 @@ function clearResult() {
 function operateEquals() {
     thispress = "equals";
     operate();
-    z = y;
-    y = null;
+    operandZ = operandY;
+    operandY = null;
     lastpress = "equals";
-    reqy = true;
+    requireY = true;
 }
 
 function pressNumber(k) {
-    if (lastpress != "equals" && str.length < 8) {
-        if (str.length < 7 || parseFloat(str) < 0)
-        str += k
-        showOnDisplay(str);
+    if (lastpress != "equals" && heldString.length < 8) {
+        if (heldString.length < 7 || parseFloat(heldString) < 0)
+        heldString += k
+        showOnDisplay(heldString);
     }
 }
 
 function pressDecimal() {
-    if (lastpress != "equals" && str.length < 8 && dcm != true) {
-        str += "."
-        dcm = true
-        showOnDisplay(str);
+    if (lastpress != "equals" && heldString.length < 8 && isDecimal != true) {
+        heldString += "."
+        isDecimal = true
+        showOnDisplay(heldString);
     }
 }
 
 function PressNegative() {
-    if (str.length > 0) {
-        if (str == ".") {
-            str = "-.";
-            showOnDisplay(str);
-        } else if (str == "-.") {
-            str = ".";
-            showOnDisplay(str);
-        } else if (str == "-") {
-            str = "";
+    if (heldString.length > 0) {
+        if (heldString == ".") {
+            heldString = "-.";
+            showOnDisplay(heldString);
+        } else if (heldString == "-.") {
+            heldString = ".";
+            showOnDisplay(heldString);
+        } else if (heldString == "-") {
+            heldString = "";
             showOnDisplay("0");
         } else {
-            str = parseFloat(str)
-            str *= -1
-            str = String(str)
-            showOnDisplay(str);
+            heldString = parseFloat(heldString)
+            heldString *= -1
+            heldString = String(heldString)
+            showOnDisplay(heldString);
         }
-    } else if (lastpress == thispress && x != null){ 
-        x *= -1
-        prepareForDisplay(x);
-    } else if (lastpress == "equals" && x != null){ 
-        x *= -1
-        prepareForDisplay(x);
+    } else if (lastpress == thispress && operandX != null){ 
+        operandX *= -1
+        prepareForDisplay(operandX);
+    } else if (lastpress == "equals" && operandX != null){ 
+        operandX *= -1
+        prepareForDisplay(operandX);
     } else {
-        str += "-"
-        showOnDisplay(str);
+        heldString += "-"
+        showOnDisplay(heldString);
     }
 }
 
 function pressBackspace() {
-    if (str.length > 0) {
-        str = str.slice(0, -1);
-        if (str.length > 0) {
-            showOnDisplay(str);
+    if (heldString.length > 0) {
+        heldString = heldString.slice(0, -1);
+        if (heldString.length > 0) {
+            showOnDisplay(heldString);
         } else {
             showOnDisplay("0");
         }

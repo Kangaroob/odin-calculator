@@ -7,7 +7,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the i button 5 times in a row to see this page
 
---The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and y are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and y are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
+--The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
     +If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
 --Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
@@ -25,7 +25,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     _______
 
     -Make text in Display auto-resize to keep from overflowing
-        +Allow longer str length (to input longer numbers)
+        +Allow longer heldString length (to input longer numbers)
 
     -Floating point math is inexact. Maybe find a workaround to make, for instance, 0.00001 / 10 equal 0.000001 instead of 0.0000010000000000000002
         +Possible solution: "You can avoid this by multiplying all inputs by 100, adding them, then comparing to 10,000. This will work because all integers between 2^-52 and 2^52 can be exactly represented in a double precision floating point numbers, but fractions may not be. http://en.wikipedia.org/wiki/Double_precision_floating-point_format
