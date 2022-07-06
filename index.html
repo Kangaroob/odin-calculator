@@ -16,43 +16,43 @@
         </div>
         <div class="container column buttons">
             <div class="container row topButtons">
-                <button onclick="on()">ON</button>
-                <button class="bk" onclick="backspace()">←</button>
-                <button class="C" onclick="Clear()">C</button>
+                <button onclick="pressON()">ON</button>
+                <button class="bk" onclick="pressBackspace()">←</button>
+                <button class="C" onclick="clearDisplay()">C</button>
             </div>
                 <div class="container row innerButtons">
                 <div class="container column nums">
                     <div class="container row">
-                        <button onclick="num(1)">1</button>
-                        <button onclick="num(2)">2</button>
-                        <button onclick="num(3)">3</button>
+                        <button onclick="pressNumber(1)">1</button>
+                        <button onclick="pressNumber(2)">2</button>
+                        <button onclick="pressNumber(3)">3</button>
                     </div>
                     <div class="container row">
-                        <button onclick="num(4)">4</button>
-                        <button onclick="num(5)">5</button>
-                        <button onclick="num(6)">6</button>
+                        <button onclick="pressNumber(4)">4</button>
+                        <button onclick="pressNumber(5)">5</button>
+                        <button onclick="pressNumber(6)">6</button>
                     </div>
                     <div class="container row">
-                        <button onclick="num(7)">7</button>
-                        <button onclick="num(8)">8</button>
-                        <button onclick="num(9)">9</button> 
+                        <button onclick="pressNumber(7)">7</button>
+                        <button onclick="pressNumber(8)">8</button>
+                        <button onclick="pressNumber(9)">9</button> 
                     </div>  
                     <div class="container row">
-                        <button onclick="negative()">(-)</button>
-                        <button onclick="num(0)">0</button>
-                        <button onclick="decimal()">.</button>
+                        <button onclick="PressNegative()">(-)</button>
+                        <button onclick="pressNumber(0)">0</button>
+                        <button onclick="pressDecimal()">.</button>
                     </div>
                 </div>
                 <div class="container column operators">
-                    <button onclick="plus()">+</button>
-                    <button onclick="minus()">-</button>
-                    <button onclick="divby()">/</button>
-                    <button onclick="multby()">x</button>
+                    <button onclick="operatePlus()">+</button>
+                    <button onclick="operateMinus()">-</button>
+                    <button onclick="operateDivide()">/</button>
+                    <button onclick="operateMultiply()">x</button>
                 </div>
             </div>
             <div class="container row">
-                <button class="equals" onclick="equals()">=</button>
-                <button onclick="README()" class="info">i</button>
+                <button class="equals" onclick="operateEquals()">=</button>
+                <button onclick="goToREADME()" class="info">i</button>
             </div>
         </div>
     </div>

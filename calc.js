@@ -6,7 +6,7 @@ const style = document.querySelector('.style');
 
 
 var log;
-function returnLog() {
+function getLog() {
     return log
 }
 
@@ -39,9 +39,9 @@ var infonow = false;
 var roundColor = false;
 var inf = "-0.0-";
 
-function on() {
+function pressON() {
     ONnow = true;
-    operator();
+    operate();
     ONtick += 1;
     if (ONtick > 4) {
         let styleSelect = style.getAttribute("href")
@@ -56,9 +56,9 @@ function on() {
     ONnow = false;
 }
 
-function README() {
+function goToREADME() {
     infonow = true;
-    operator();
+    operate();
     infotick += 1;
     if (infotick > 4) {
         window.location.href = "./README.md";
@@ -66,6 +66,7 @@ function README() {
     infonow = false;
 }
 
+// FLAGGED FOR RENAMING
 function d0(ddd) {
     sd = 0;
     str1 = str.slice(0,ddd);
@@ -76,6 +77,7 @@ function d0(ddd) {
     str = "" + str1 + sd + str2;
 }
 
+// FLAGGED FOR RENAMING
 function dplus(ddd) {
     sd = parseInt(str[ddd]);
     sd += 1;
@@ -91,15 +93,15 @@ function dplus(ddd) {
     str = "" + str1 + sd + str2;
 }
 
-function rrround(d) {
+function roundNumber(d) {
     if (d>0) {
         dd = d - 1;
         d2 = d + 1;
         if (str[d] == ".") {
-            rrround(dd)
+            roundNumber(dd)
         } else if (str[d] == 9) {
             d0(d);
-            rrround(dd)
+            roundNumber(dd)
         } else if (str[d] >= 0 && str[d] <=8){
             dplus(d);
         };
@@ -118,6 +120,7 @@ function rrround(d) {
     }
 };
 
+// FLAGGED FOR RENAMING
 function disp(w) {
     if (reqC == false) {
         if (roundColor == true) {
@@ -138,6 +141,7 @@ function disp(w) {
     roundColor = false;
 }
 
+// FLAGGED FOR RENAMING
 function dispStr(w) {
     str = String(w)
         let roundx = Number(w);
@@ -181,7 +185,7 @@ function dispStr(w) {
                 }
                 if (str[8] >= 5) {
                 console.log(str);
-                    rrround(7);
+                    roundNumber(7);
                 console.log(str);
                 }
             str = str.slice(0,8);
@@ -212,13 +216,14 @@ function dispStr(w) {
         str = ""
 }
 
+//FLAGGED FOR RENAMING
 function dispAdd(w) {
     if (reqC == false) {
         display.innerHTML += w
     }
 }
 
-function Clear() {
+function clearDisplay() {
     x = null;
     y = null;
     z = null;
@@ -235,15 +240,15 @@ function Clear() {
     infotick = 0;
     if (result != "inf") {
         result = null;
-        operator();
+        operate();
     } else {
         result=null;
     }
 }
 
-function plus() {
+function operatePlus() {
     thispress = "plus"
-    operator();
+    operate();
     equation = function() {
         tempx = 100 * x;
         tempy = 100 * y;
@@ -255,9 +260,9 @@ function plus() {
     lastpress = "plus";
 }
 
-function minus() {
+function operateMinus() {
     thispress = "minus"
-    operator();
+    operate();
     equation = function() {
         tempx = 100 * x;
         tempy = 100 * y;
@@ -269,9 +274,9 @@ function minus() {
     lastpress = "minus"
 }
 
-function divby() {
+function operateDivide() {
     thispress = "divby"
-    operator();
+    operate();
     equation = function() {
         // tempx = 100 * x;
         // tempy = 100 * y;
@@ -284,9 +289,9 @@ function divby() {
     lastpress = "divby"
 }
 
-function multby() {
+function operateMultiply() {
     thispress = "multby"
-    operator();
+    operate();
     equation = function() {
         tempx = 100 * x;
         tempy = 100 * y;
@@ -298,7 +303,7 @@ function multby() {
     lastpress = "multby"
 }
 
-function operator() {
+function operate() {
     if (thispress == "equals") {
         if (y == null) {
             y = z;
@@ -307,7 +312,8 @@ function operator() {
     } else {
         z = null;
     }
-    opstart();
+    assignOperand();
+    clearString();
     console.log(x + " x y " + y);
     if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
         if (reqy == true) {
@@ -329,11 +335,12 @@ function operator() {
         infotick = 0;
     };
     console.log("result " + result);
-    opclose();
+    showResult();
+    result = null;
 }
 
 //Give x and y value; clear str
-function opstart() {
+function assignOperand() {
     if (str == "-" || str == "." || str == "-.") {
         str = 0;
     }
@@ -350,16 +357,19 @@ function opstart() {
     } else if (str.length != 0) {
         y = parseFloat(str)
     }
-    str = ""
     dcm = false
 }
 
-function opclose() {
+function clearString() {
+    str = ""
+}
+
+function showResult() {
     if (x == null) {
         disp("0")
     } else if (result == "inf") {
         disp(inf);
-        Clear();
+        clearDisplay();
     } else if (result == null) {
         dispStr(x);
     } else {
@@ -381,19 +391,22 @@ function opclose() {
         dispStr(x);
         // x = parseFloat(x)
     };
+}
+
+function clearResult() {
     result = null;
 }
 
-function equals() {
+function operateEquals() {
     thispress = "equals";
-    operator();
+    operate();
     z = y;
     y = null;
     lastpress = "equals";
     reqy = true;
 }
 
-function num(k) {
+function pressNumber(k) {
     if (lastpress != "equals" && str.length < 8) {
         if (str.length < 7 || parseFloat(str) < 0)
         str += k
@@ -401,7 +414,7 @@ function num(k) {
     }
 }
 
-function decimal() {
+function pressDecimal() {
     if (lastpress != "equals" && str.length < 8 && dcm != true) {
         str += "."
         dcm = true
@@ -409,7 +422,7 @@ function decimal() {
     }
 }
 
-function negative() {
+function PressNegative() {
     if (str.length > 0) {
         if (str == ".") {
             str = "-.";
@@ -438,7 +451,7 @@ function negative() {
     }
 }
 
-function backspace() {
+function pressBackspace() {
     if (str.length > 0) {
         str = str.slice(0, -1);
         if (str.length > 0) {
@@ -451,99 +464,99 @@ function backspace() {
 
 function logKey(r) {
     log = r.key;
-    switch (returnLog()) {
+    switch (getLog()) {
         case "Control":
-            on();
+            pressON();
             break;
         case "Backspace":
-            backspace();
+            pressBackspace();
             break;
         case "Home":
-            backspace();
+            pressBackspace();
             break;
         case "Escape":
-            Clear();
+            clearDisplay();
             break;
         case "Delete":
-            Clear();
+            clearDisplay();
             break;
         case "+":
-            plus();
+            operatePlus();
             break;
         case "=":
-            plus();
+            operatePlus();
             break;
         case "-":
-            minus();
+            operateMinus();
             break;
         case "_":
-            minus();
+            operateMinus();
             break;
         case "/":
-            divby();
+            operateDivide();
             break;
         case "?":
-            divby();
+            operateDivide();
             break;
         case "*":
-            multby();
+            operateMultiply();
             break;
         case "x":
-            multby();
+            operateMultiply();
             break;
         case "X":
-            multby();
+            operateMultiply();
             break;
         case "Enter":
-            equals();
+            operateEquals();
             break;
         case "1":
-            num(1);
+            pressNumber(1);
             break;
         case "2":
-            num(2);
+            pressNumber(2);
             break;
         case "3":
-            num(3);
+            pressNumber(3);
             break;
         case "4":
-            num(4);
+            pressNumber(4);
             break;
         case "5":
-            num(5);
+            pressNumber(5);
             break;
         case "6":
-            num(6);
+            pressNumber(6);
             break;
         case "7":
-            num(7);
+            pressNumber(7);
             break;
         case "8":
-            num(8);
+            pressNumber(8);
             break;
         case "9":
-            num(9);
+            pressNumber(9);
             break;
         case "0":
-            num(0);
+            pressNumber(0);
             break;
         case "~":
-            negative();
+            PressNegative();
             break;
         case "PageUp":
-            negative();
+            PressNegative();
             break;
         case "`":
-            negative();
+            PressNegative();
             break;
         case ".":
-            decimal();
+            pressDecimal();
             break;
         case "i":
-            README();
+            goToREADME();
             break;
         case "I":
-            README();
+            goToREADME();
             break;
         };
 };

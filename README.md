@@ -48,7 +48,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
     -Add key-binding configuration interface
 
-    -Maybe make it so clicking on buttons doesn't leave them focused (i.e. if you click + and then press Enter the calculator will run equals() instead of plus() )?
+    -Maybe make it so clicking on buttons doesn't leave them focused (i.e. if you click + and then press Enter the calculator will run operateEquals() instead of operatePlus() )?
 
     ---
 
