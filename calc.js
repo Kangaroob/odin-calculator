@@ -118,8 +118,7 @@ function roundNumber(currentNumber) {
     }
 };
 
-// FLAGGED FOR RENAMING
-function disp(w) {
+function showOnDisplay(currentString) {
     if (reqC == false) {
         if (roundColor == true) {
             display.setAttribute("style", "background-color: #7f7");
@@ -130,7 +129,7 @@ function disp(w) {
             displaybig.setAttribute("style", "background-color: #777");
 
         }
-        display.innerHTML = w
+        display.innerHTML = currentString
     }
     if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
         display.innerHTML = inf
@@ -139,10 +138,9 @@ function disp(w) {
     roundColor = false;
 }
 
-// FLAGGED FOR RENAMING
-function dispStr(w) {
-    str = String(w)
-        let roundx = Number(w);
+function prepareForDisplay(currentString) {
+    str = String(currentString)
+        let roundx = Number(currentString);
         let roundxNeg = String(roundx);
         if (roundxNeg[0] == "-") {
             roundxNeg = roundxNeg.slice(1,);
@@ -210,14 +208,13 @@ function dispStr(w) {
         //         }
         //     }
         // }
-        disp(str);
+        showOnDisplay(str);
         str = ""
 }
 
-//FLAGGED FOR RENAMING
-function dispAdd(w) {
+function showDisplayExtend(currentString) {
     if (reqC == false) {
-        display.innerHTML += w
+        display.innerHTML += currentString
     }
 }
 
@@ -253,7 +250,7 @@ function operatePlus() {
         result = tempx + tempy;
         result = result / 100;
     };
-    dispAdd("+");
+    showDisplayExtend("+");
     thispress = "clear";
     lastpress = "plus";
 }
@@ -267,7 +264,7 @@ function operateMinus() {
         result = tempx - tempy;
         result = result / 100;
     };
-    dispAdd("-")
+    showDisplayExtend("-")
     thispress = "clear"
     lastpress = "minus"
 }
@@ -282,7 +279,7 @@ function operateDivide() {
         // result = result / 10000;
         result = x / y;
     };
-    dispAdd("/")
+    showDisplayExtend("/")
     thispress = "clear"
     lastpress = "divby"
 }
@@ -296,7 +293,7 @@ function operateMultiply() {
         result = tempx * tempy;
         result = result / 10000;
     };
-    dispAdd("x")
+    showDisplayExtend("x")
     thispress = "clear"
     lastpress = "multby"
 }
@@ -364,12 +361,12 @@ function clearString() {
 
 function showResult() {
     if (x == null) {
-        disp("0")
+        showOnDisplay("0")
     } else if (result == "inf") {
-        disp(inf);
+        showOnDisplay(inf);
         clearDisplay();
     } else if (result == null) {
-        dispStr(x);
+        prepareForDisplay(x);
     } else {
         // x = Number(result);
         // x = x.toPrecision(4)
@@ -386,7 +383,7 @@ function showResult() {
         // }
         // console.log("x float" + x)
         x = result
-        dispStr(x);
+        prepareForDisplay(x);
         // x = parseFloat(x)
     };
 }
@@ -408,7 +405,7 @@ function pressNumber(k) {
     if (lastpress != "equals" && str.length < 8) {
         if (str.length < 7 || parseFloat(str) < 0)
         str += k
-        disp(str);
+        showOnDisplay(str);
     }
 }
 
@@ -416,7 +413,7 @@ function pressDecimal() {
     if (lastpress != "equals" && str.length < 8 && dcm != true) {
         str += "."
         dcm = true
-        disp(str);
+        showOnDisplay(str);
     }
 }
 
@@ -424,28 +421,28 @@ function PressNegative() {
     if (str.length > 0) {
         if (str == ".") {
             str = "-.";
-            disp(str);
+            showOnDisplay(str);
         } else if (str == "-.") {
             str = ".";
-            disp(str);
+            showOnDisplay(str);
         } else if (str == "-") {
             str = "";
-            disp("0");
+            showOnDisplay("0");
         } else {
             str = parseFloat(str)
             str *= -1
             str = String(str)
-            disp(str);
+            showOnDisplay(str);
         }
     } else if (lastpress == thispress && x != null){ 
         x *= -1
-        dispStr(x);
+        prepareForDisplay(x);
     } else if (lastpress == "equals" && x != null){ 
         x *= -1
-        dispStr(x);
+        prepareForDisplay(x);
     } else {
         str += "-"
-        disp(str);
+        showOnDisplay(str);
     }
 }
 
@@ -453,9 +450,9 @@ function pressBackspace() {
     if (str.length > 0) {
         str = str.slice(0, -1);
         if (str.length > 0) {
-            disp(str);
+            showOnDisplay(str);
         } else {
-            disp("0");
+            showOnDisplay("0");
         }
     }
 };
