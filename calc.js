@@ -19,11 +19,11 @@ var y = null;
 var tempx;
 var tempy;
 var z = null;
-var dd;
-var sd;
+var lowerNumber;
+var scratchNum2;
 var str1;
 var str2;
-var d2;
+var higherNumber;
 var result = null;
 var equation = function() {
 }
@@ -66,54 +66,52 @@ function goToREADME() {
     infonow = false;
 }
 
-// FLAGGED FOR RENAMING
-function d0(ddd) {
-    sd = 0;
-    str1 = str.slice(0,ddd);
-    str2 = str.slice(d2,);
+function roundUp10(scratchNumber) {
+    scratchNum2 = 0;
+    str1 = str.slice(0,scratchNumber);
+    str2 = str.slice(higherNumber,);
     // console.log("str1 " + str1);
-    // console.log(sd);
+    // console.log(scratchNum2);
     // console.log("str2 " + str2);
-    str = "" + str1 + sd + str2;
+    str = "" + str1 + scratchNum2 + str2;
 }
 
-// FLAGGED FOR RENAMING
-function dplus(ddd) {
-    sd = parseInt(str[ddd]);
-    sd += 1;
-    str1 = str.slice(0,ddd);
-    str2 = str.slice(d2,);
-    if (ddd == 0 && str2 % 1 == 0) {
+function roundUp(scratchNumber) {
+    scratchNum2 = parseInt(str[scratchNumber]);
+    scratchNum2 += 1;
+    str1 = str.slice(0,scratchNumber);
+    str2 = str.slice(higherNumber,);
+    if (scratchNumber == 0 && str2 % 1 == 0) {
         console.log("yes")
-        sd = sd + ".";
+        scratchNum2 = scratchNum2 + ".";
     };
     console.log("str1 " + str1);
-    console.log(sd);
+    console.log(scratchNum2);
     console.log("str2 " + str2);
-    str = "" + str1 + sd + str2;
+    str = "" + str1 + scratchNum2 + str2;
 }
 
-function roundNumber(d) {
-    if (d>0) {
-        dd = d - 1;
-        d2 = d + 1;
-        if (str[d] == ".") {
-            roundNumber(dd)
-        } else if (str[d] == 9) {
-            d0(d);
-            roundNumber(dd)
-        } else if (str[d] >= 0 && str[d] <=8){
-            dplus(d);
+function roundNumber(currentNumber) {
+    if (currentNumber>0) {
+        lowerNumber = currentNumber - 1;
+        higherNumber = currentNumber + 1;
+        if (str[currentNumber] == ".") {
+            roundNumber(lowerNumber)
+        } else if (str[currentNumber] == 9) {
+            roundUp10(currentNumber);
+            roundNumber(lowerNumber)
+        } else if (str[currentNumber] >= 0 && str[currentNumber] <=8){
+            roundUp(currentNumber);
         };
-    } else if (d == 0) {
-        if (str[d] >= 0 && str[d] <=8){
-            dplus(d);
-        } else if (str[d] == 9) {
+    } else if (currentNumber == 0) {
+        if (str[currentNumber] >= 0 && str[currentNumber] <=8){
+            roundUp(currentNumber);
+        } else if (str[currentNumber] == 9) {
             str.slice(1,);
             str = "10" + str;
-        } else if (str[d] == ".") {
+        } else if (str[currentNumber] == ".") {
             str = "1" + str;
-        } else if (str[d] == "-") {
+        } else if (str[currentNumber] == "-") {
             str.slice(1,)
             str = "-1" + str;
         }
