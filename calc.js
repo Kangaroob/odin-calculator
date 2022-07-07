@@ -292,7 +292,7 @@ function operateMultiply() {
         result = tempX * tempY;
         result = result / 10000;
     };
-    showDisplayExtend("operandX")
+    showDisplayExtend("x")
     thispress = "clear"
     lastpress = "multby"
 }
