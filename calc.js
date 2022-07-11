@@ -10,8 +10,8 @@ function getLog() {
 
 document.addEventListener('keydown', logKey);
 
-let lastpress = "clear";
-let thispress = "clear";
+let lastPress = "clear";
+let thisPress = "clear";
 let operandX = null;
 let operandY = null;
 let tempX;
@@ -175,8 +175,8 @@ function clearDisplay() {
     }
     heldString = null;
     heldString = "";
-    thispress = "clear";
-    lastpress = "clear";  
+    thisPress = "clear";
+    lastPress = "clear";  
     requireY = false;
     requireClear = false;
     if (result != "inf") {
@@ -188,7 +188,7 @@ function clearDisplay() {
 }
 
 function operatePlus() {
-    thispress = "plus"
+    thisPress = "plus"
     operate();
     equation = function() {
         tempX = 100 * operandX;
@@ -197,12 +197,12 @@ function operatePlus() {
         result = result / 100;
     };
     showDisplayExtend("+");
-    thispress = "clear";
-    lastpress = "plus";
+    thisPress = "clear";
+    lastPress = "plus";
 }
 
 function operateMinus() {
-    thispress = "minus"
+    thisPress = "minus"
     operate();
     equation = function() {
         tempX = 100 * operandX;
@@ -211,23 +211,23 @@ function operateMinus() {
         result = result / 100;
     };
     showDisplayExtend("-")
-    thispress = "clear"
-    lastpress = "minus"
+    thisPress = "clear"
+    lastPress = "minus"
 }
 
 function operateDivide() {
-    thispress = "divby"
+    thisPress = "divby"
     operate();
     equation = function() {
         result = operandX / operandY;
     };
     showDisplayExtend("/")
-    thispress = "clear"
-    lastpress = "divby"
+    thisPress = "clear"
+    lastPress = "divby"
 }
 
 function operateMultiply() {
-    thispress = "multby"
+    thisPress = "multby"
     operate();
     equation = function() {
         tempX = 100 * operandX;
@@ -236,16 +236,16 @@ function operateMultiply() {
         result = result / 10000;
     };
     showDisplayExtend("x")
-    thispress = "clear"
-    lastpress = "multby"
+    thisPress = "clear"
+    lastPress = "multby"
 }
 
 function operate() {
-    if (thispress == "equals") {
+    if (thisPress == "equals") {
         if (operandY == null) {
             operandY = operandZ;
         }
-        thispress = "clear";
+        thisPress = "clear";
     } else {
         operandZ = null;
     }
@@ -253,7 +253,7 @@ function operate() {
     assignOperand();
     clearDecimal();
     clearString();
-    if (thispress == "clear" || thispress == lastpress || lastpress == "equals" || lastpress == "clear"){
+    if (thisPress == "clear" || thisPress == lastPress || lastPress == "equals" || lastPress == "clear"){
         if (requireY == true) {
             if (operandY != null) {
                 equation();
@@ -323,16 +323,16 @@ function clearResult() {
 }
 
 function operateEquals() {
-    thispress = "equals";
+    thisPress = "equals";
     operate();
     operandZ = operandY;
     operandY = null;
-    lastpress = "equals";
+    lastPress = "equals";
     requireY = true;
 }
 
 function pressNumber(k) {
-    if (lastpress != "equals" && heldString.length < 8) {
+    if (lastPress != "equals" && heldString.length < 8) {
         if (heldString.length < 7 || parseFloat(heldString) < 0)
         heldString += k
         showOnDisplay(heldString);
@@ -340,7 +340,7 @@ function pressNumber(k) {
 }
 
 function pressDecimal() {
-    if (lastpress != "equals" && heldString.length < 8 && isDecimal != true) {
+    if (lastPress != "equals" && heldString.length < 8 && isDecimal != true) {
         heldString += "."
         isDecimal = true
         showOnDisplay(heldString);
@@ -364,10 +364,10 @@ function PressNegative() {
             heldString = String(heldString)
             showOnDisplay(heldString);
         }
-    } else if (lastpress == thispress && operandX != null){ 
+    } else if (lastPress == thisPress && operandX != null){ 
         operandX *= -1
         prepareForDisplay(operandX);
-    } else if (lastpress == "equals" && operandX != null){ 
+    } else if (lastPress == "equals" && operandX != null){ 
         operandX *= -1
         prepareForDisplay(operandX);
     } else {
