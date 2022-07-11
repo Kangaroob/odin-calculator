@@ -3,9 +3,9 @@ Calculator assignment for The ODIN Project
 
 This is a calculator I built in JavaScript without using the Math object. I did my best to emulate the behaviour of a calculator I used in my childhood. For example, pressing "5 + + + + =" will calculate to 25. I really like it!
 
---Click or tap the ON button 5 times in a row to change the display size. The default is made to fit the screen on mobile devices
+--Click or tap the ON button to change the display size. The default is made to fit the screen on mobile devices
 
---Click or tap the i button 5 times in a row to see this page
+--Click or tap the i button to see this page
 
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
     +If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.

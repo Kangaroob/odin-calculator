@@ -31,38 +31,24 @@ var heldString = "";
 var requireY = false;
 var requireClear = false;
 var isDecimal = false;
-var onTick = 0;
-var onNow = false;
-var infoTick = 0;
-var infoNow = false;
 var roundColor = false;
 var infinityDisplay = "-0.0-";
 
 function pressON() {
-    onNow = true;
     operate();
-    onTick += 1;
-    if (onTick > 4) {
-        let styleSelect = style.getAttribute("href")
-        if (styleSelect == "./style.css") {
-            style.setAttribute("href", "./deskstyle.css")
-        } else if (styleSelect == "./deskstyle.css") {
-            style.setAttribute("href", "./style.css")
-        }
-        display.innerHTML = "i 5x = info"
-
+    let styleSelect = style.getAttribute("href")
+    if (styleSelect == "./style.css" && confirm("Change to Desktop View?")) {
+        style.setAttribute("href", "./deskstyle.css")
+    } else if (styleSelect == "./deskstyle.css" && confirm("Change to Mobile View?")) {
+        style.setAttribute("href", "./style.css")
     }
-    onNow = false;
 }
 
 function goToREADME() {
-    infoNow = true;
     operate();
-    infoTick += 1;
-    if (infoTick > 4) {
+    if (confirm("Leave Calculator and View REAME?")) {
         window.location.href = "./README.md";
     }
-    infoNow = false;
 }
 
 function roundUp10(scratchNumber) {
@@ -230,8 +216,6 @@ function clearDisplay() {
     lastpress = "clear";  
     requireY = false;
     requireClear = false;
-    onTick = 0;
-    infoTick = 0;
     if (result != "inf") {
         result = null;
         operate();
@@ -321,12 +305,6 @@ function operate() {
         equation();
     } else {
         requireY = true;
-    };
-    if (onNow != true) {
-        onTick = 0;
-    };
-    if (infoNow != true) {
-        infoTick = 0;
     };
     console.log("result " + result);
     showResult();
