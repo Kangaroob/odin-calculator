@@ -40,142 +40,6 @@ function goToREADME() {
     }
 }
 
-function roundUp10(integer) {
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice(higherNumber,);
-    heldString = "" + stringStart + 0 + stringEnd;
-}
-
-function roundUp(integer) {
-    let higherInteger = parseInt(heldString[integer]);
-    higherInteger += 1;
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice(higherNumber,);
-    if (integer == 0 && stringEnd % 1 == 0) {
-        higherInteger = higherInteger + ".";
-    };
-    heldString = "" + stringStart + higherInteger + stringEnd;
-}
-
-function roundNumber(currentNumber) {
-    if (currentNumber>0) {
-        let lowerNumber = currentNumber - 1;
-        let higherNumber = currentNumber + 1;
-        if (heldString[currentNumber] == ".") {
-            roundNumber(lowerNumber)
-        } else if (heldString[currentNumber] == 9) {
-            roundUp10(currentNumber);
-            roundNumber(lowerNumber)
-        } else if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
-            roundUp(currentNumber);
-        };
-    } else if (currentNumber == 0) {
-        if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
-            roundUp(currentNumber);
-        } else if (heldString[currentNumber] == 9) {
-            heldString.slice(1,);
-            heldString = "10" + heldString;
-        } else if (heldString[currentNumber] == ".") {
-            heldString = "1" + heldString;
-        } else if (heldString[currentNumber] == "-") {
-            heldString.slice(1,)
-            heldString = "-1" + heldString;
-        }
-    }
-};
-
-function showOnDisplay(currentString) {
-    if (requireClear == false) {
-        setDisplayColor();
-        display.innerHTML = currentString
-    }
-    checkForNumericDisplay();
-    roundColor = false;
-}
-
-function setDisplayColor() {
-    if (roundColor == true) {
-        display.setAttribute("style", "background-color: #7f7");
-        displaybig.setAttribute("style", "background-color: #7f7");
-
-    } else {
-        display.setAttribute("style", "background-color: inherit");
-        displaybig.setAttribute("style", "background-color: #777");
-
-    }
-}
-
-function checkForNumericDisplay() {
-    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
-        display.innerHTML = infinityDisplay
-        requireClear = true
-    }
-}
-
-function prepareForDisplay(currentString) {
-    heldString = String(currentString)
-        let roundx = Number(currentString);
-        let roundxNeg = String(roundx);
-        if (roundxNeg[0] == "-") {
-            roundxNeg = roundxNeg.slice(1,);
-        };
-        roundxNeg = Number(roundxNeg)
-        if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
-            if (heldString.length > 8) {
-                roundColor = true;
-                if (roundxNeg > 9999999) {
-                    let roundxStr = parseInt(roundx);
-                    roundxStr = String(roundxStr);
-                    if (heldString[0] == "-") {
-                        heldString = heldString[0] + heldString[1] + "." + heldString[2] + "e+" + (roundxStr.length - 1);
-                    } else {
-                        heldString = heldString[0] + "." + heldString[1] + heldString[2] + "e+" + (roundxStr.length - 1);
-                    }
-                } else if (roundxNeg < 0.000001){
-                    roundx = roundx.toPrecision(3);
-                    heldString = String(roundx)
-                } else {
-                    heldString = heldString.slice(0,8);
-                }
-                if (heldString[8] >= 5) {
-                    roundNumber(7);
-                }
-            heldString = heldString.slice(0,8);
-            }
-        } else if (roundxNeg != 0){
-            roundColor = true;
-            heldString = roundx.toPrecision(2);
-        }
-        showOnDisplay(heldString);
-        heldString = ""
-}
-
-function showDisplayExtend(currentString) {
-    if (requireClear == false) {
-        display.innerHTML += currentString
-    }
-}
-
-function clearDisplay() {
-    operandX = null;
-    operandY = null;
-    operandZ = null;
-    equation = function() {
-    }
-    heldString = null;
-    heldString = "";
-    thisPress = "clear";
-    lastPress = "clear";  
-    requireY = false;
-    requireClear = false;
-    if (result != "inf") {
-        result = null;
-        operate();
-    } else {
-        result=null;
-    }
-}
-
 function operatePlus() {
     thisPress = "plus"
     operate();
@@ -227,6 +91,21 @@ function operateMultiply() {
     showDisplayExtend("x")
     thisPress = "clear"
     lastPress = "multby"
+}
+
+function operateEquals() {
+    thisPress = "equals";
+    operate();
+    operandZ = operandY;
+    operandY = null;
+    lastPress = "equals";
+    requireY = true;
+}
+
+function showDisplayExtend(currentString) {
+    if (requireClear == false) {
+        display.innerHTML += currentString
+    }
 }
 
 function operate() {
@@ -307,18 +186,136 @@ function showResult() {
     };
 }
 
-function clearResult() {
-    result = null;
+function clearDisplay() {
+    operandX = null;
+    operandY = null;
+    operandZ = null;
+    equation = function() {
+    }
+    heldString = null;
+    heldString = "";
+    thisPress = "clear";
+    lastPress = "clear";  
+    requireY = false;
+    requireClear = false;
+    if (result != "inf") {
+        result = null;
+        operate();
+    } else {
+        result=null;
+    }
 }
 
-function operateEquals() {
-    thisPress = "equals";
-    operate();
-    operandZ = operandY;
-    operandY = null;
-    lastPress = "equals";
-    requireY = true;
+function showOnDisplay(currentString) {
+    if (requireClear == false) {
+        setDisplayColor();
+        display.innerHTML = currentString
+    }
+    checkForNumericDisplay();
+    roundColor = false;
 }
+
+function setDisplayColor() {
+    if (roundColor == true) {
+        display.setAttribute("style", "background-color: #7f7");
+        displaybig.setAttribute("style", "background-color: #7f7");
+
+    } else {
+        display.setAttribute("style", "background-color: inherit");
+        displaybig.setAttribute("style", "background-color: #777");
+
+    }
+}
+
+function checkForNumericDisplay() {
+    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
+        display.innerHTML = infinityDisplay
+        requireClear = true
+    }
+}
+
+function prepareForDisplay(currentString) {
+    heldString = String(currentString)
+        let roundx = Number(currentString);
+        let roundxNeg = String(roundx);
+        if (roundxNeg[0] == "-") {
+            roundxNeg = roundxNeg.slice(1,);
+        };
+        roundxNeg = Number(roundxNeg)
+        if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
+            if (heldString.length > 8) {
+                roundColor = true;
+                if (roundxNeg > 9999999) {
+                    let roundxStr = parseInt(roundx);
+                    roundxStr = String(roundxStr);
+                    if (heldString[0] == "-") {
+                        heldString = heldString[0] + heldString[1] + "." + heldString[2] + "e+" + (roundxStr.length - 1);
+                    } else {
+                        heldString = heldString[0] + "." + heldString[1] + heldString[2] + "e+" + (roundxStr.length - 1);
+                    }
+                } else if (roundxNeg < 0.000001){
+                    roundx = roundx.toPrecision(3);
+                    heldString = String(roundx)
+                } else {
+                    heldString = heldString.slice(0,8);
+                }
+                if (heldString[8] >= 5) {
+                    roundNumber(7);
+                }
+            heldString = heldString.slice(0,8);
+            }
+        } else if (roundxNeg != 0){
+            roundColor = true;
+            heldString = roundx.toPrecision(2);
+        }
+        showOnDisplay(heldString);
+        heldString = ""
+}
+
+
+function roundUp10(integer) {
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice(higherNumber,);
+    heldString = "" + stringStart + 0 + stringEnd;
+}
+
+function roundUp(integer) {
+    let higherInteger = parseInt(heldString[integer]);
+    higherInteger += 1;
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice(higherNumber,);
+    if (integer == 0 && stringEnd % 1 == 0) {
+        higherInteger = higherInteger + ".";
+    };
+    heldString = "" + stringStart + higherInteger + stringEnd;
+}
+
+function roundNumber(currentNumber) {
+    if (currentNumber>0) {
+        let lowerNumber = currentNumber - 1;
+        let higherNumber = currentNumber + 1;
+        if (heldString[currentNumber] == ".") {
+            roundNumber(lowerNumber)
+        } else if (heldString[currentNumber] == 9) {
+            roundUp10(currentNumber);
+            roundNumber(lowerNumber)
+        } else if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
+            roundUp(currentNumber);
+        };
+    } else if (currentNumber == 0) {
+        if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
+            roundUp(currentNumber);
+        } else if (heldString[currentNumber] == 9) {
+            heldString.slice(1,);
+            heldString = "10" + heldString;
+        } else if (heldString[currentNumber] == ".") {
+            heldString = "1" + heldString;
+        } else if (heldString[currentNumber] == "-") {
+            heldString.slice(1,)
+            heldString = "-1" + heldString;
+        }
+    }
+};
 
 function pressNumber(k) {
     if (lastPress != "equals" && heldString.length < 8) {
