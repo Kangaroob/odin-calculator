@@ -3,34 +3,34 @@ const displaybig = document.querySelector('.display');
 const style = document.querySelector('.style');
 
 
-var log;
+let log;
 function getLog() {
     return log
 }
 
 document.addEventListener('keydown', logKey);
 
-var lastpress = "clear";
-var thispress = "clear";
-var operandX = null;
-var operandY = null;
-var tempX;
-var tempY;
-var operandZ = null;
-var lowerNumber;
-var scratchNum2;
-var stringStart;
-var stringEnd;
-var higherNumber;
-var result = null;
-var equation = function() {
+let lastpress = "clear";
+let thispress = "clear";
+let operandX = null;
+let operandY = null;
+let tempX;
+let tempY;
+let operandZ = null;
+let lowerNumber;
+let scratchNum2;
+let stringStart;
+let stringEnd;
+let higherNumber;
+let result = null;
+let equation = function() {
 }
-var heldString = "";
-var requireY = false;
-var requireClear = false;
-var isDecimal = false;
-var roundColor = false;
-var infinityDisplay = "-0.0-";
+let heldString = "";
+let requireY = false;
+let requireClear = false;
+let isDecimal = false;
+let roundColor = false;
+let infinityDisplay = "-0.0-";
 
 function pressON() {
     operate();
@@ -171,7 +171,7 @@ function clearDisplay() {
     operandY = null;
     operandZ = null;
     equation = function() {
-        var Q = Q
+        let Q = Q
     }
     heldString = null;
     heldString = "";
