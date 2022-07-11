@@ -7,8 +7,9 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the i button to see this page
 
+--If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
+
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
-    +If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
 --Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
     -Control -> ON
@@ -32,6 +33,8 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
         Another approach is to roll your own decimal addition function to work on number strings." 
             - https://stackoverflow.com/questions/7540228/javascript-adds-0-000000002-to-calculation
+        
+        +Or I may just add a toPrecision to make it not possible to return long decimals ¯\_ (ツ)_/¯
     
     ---
 
