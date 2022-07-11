@@ -441,41 +441,27 @@ function logKey(r) {
             pressON();
             break;
         case "Backspace":
-            pressBackspace();
-            break;
         case "Home":
             pressBackspace();
             break;
         case "Escape":
-            clearDisplay();
-            break;
         case "Delete":
             clearDisplay();
             break;
         case "+":
-            operatePlus();
-            break;
         case "=":
             operatePlus();
             break;
         case "-":
-            operateMinus();
-            break;
         case "_":
             operateMinus();
             break;
         case "/":
-            operateDivide();
-            break;
         case "?":
             operateDivide();
             break;
         case "*":
-            operateMultiply();
-            break;
         case "x":
-            operateMultiply();
-            break;
         case "X":
             operateMultiply();
             break;
@@ -513,11 +499,7 @@ function logKey(r) {
             pressNumber(0);
             break;
         case "~":
-            PressNegative();
-            break;
         case "PageUp":
-            PressNegative();
-            break;
         case "`":
             PressNegative();
             break;
@@ -525,8 +507,6 @@ function logKey(r) {
             pressDecimal();
             break;
         case "i":
-            goToREADME();
-            break;
         case "I":
             goToREADME();
             break;
