@@ -34,7 +34,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
         Another approach is to roll your own decimal addition function to work on number strings." 
             - https://stackoverflow.com/questions/7540228/javascript-adds-0-000000002-to-calculation
         
-        +Or I may just add a toPrecision to make it not possible to return long decimals ¯\_ (ツ)_/¯
+        +Or I may just add a toPrecision to make it not possible to return long decimals
     
     ---
 
