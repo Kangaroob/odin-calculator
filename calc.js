@@ -14,14 +14,11 @@ let lastPress = "clear";
 let thisPress = "clear";
 let operandX = null;
 let operandY = null;
-let tempX;
-let tempY;
 let operandZ = null;
-let lowerNumber;
 let scratchNum2;
 let stringStart;
 let stringEnd;
-let higherNumber;
+// let higherNumber;
 let result = null;
 let equation = function() {
 }
@@ -69,8 +66,8 @@ function roundUp(scratchNumber) {
 
 function roundNumber(currentNumber) {
     if (currentNumber>0) {
-        lowerNumber = currentNumber - 1;
-        higherNumber = currentNumber + 1;
+        let lowerNumber = currentNumber - 1;
+        let higherNumber = currentNumber + 1;
         if (heldString[currentNumber] == ".") {
             roundNumber(lowerNumber)
         } else if (heldString[currentNumber] == 9) {
@@ -191,8 +188,8 @@ function operatePlus() {
     thisPress = "plus"
     operate();
     equation = function() {
-        tempX = 100 * operandX;
-        tempY = 100 * operandY;
+        let tempX = 100 * operandX;
+        let tempY = 100 * operandY;
         result = tempX + tempY;
         result = result / 100;
     };
@@ -205,8 +202,8 @@ function operateMinus() {
     thisPress = "minus"
     operate();
     equation = function() {
-        tempX = 100 * operandX;
-        tempY = 100 * operandY;
+        let tempX = 100 * operandX;
+        let tempY = 100 * operandY;
         result = tempX - tempY;
         result = result / 100;
     };
@@ -230,8 +227,8 @@ function operateMultiply() {
     thisPress = "multby"
     operate();
     equation = function() {
-        tempX = 100 * operandX;
-        tempY = 100 * operandY;
+        let tempX = 100 * operandX;
+        let tempY = 100 * operandY;
         result = tempX * tempY;
         result = result / 10000;
     };
