@@ -11,8 +11,7 @@ let operandX = null;
 let operandY = null;
 let operandZ = null;
 let result = null;
-let equation = function() {
-}
+let equation = function() {}
 let heldString = "";
 let requireY = false;
 let requireClear = false;
