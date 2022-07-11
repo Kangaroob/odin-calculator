@@ -2,23 +2,14 @@ const display = document.querySelector('.display-text');
 const displaybig = document.querySelector('.display');
 const style = document.querySelector('.style');
 
-
-let log;
-function getLog() {
-    return log
-}
-
 document.addEventListener('keydown', logKey);
 
+let log;
 let lastPress = "clear";
 let thisPress = "clear";
 let operandX = null;
 let operandY = null;
 let operandZ = null;
-let scratchNum2;
-let stringStart;
-let stringEnd;
-// let higherNumber;
 let result = null;
 let equation = function() {
 }
@@ -28,6 +19,10 @@ let requireClear = false;
 let isDecimal = false;
 let roundColor = false;
 let infinityDisplay = "-0.0-";
+
+function getLog() {
+    return log
+}
 
 function pressON() {
     operate();
@@ -46,22 +41,21 @@ function goToREADME() {
     }
 }
 
-function roundUp10(scratchNumber) {
-    scratchNum2 = 0;
-    stringStart = heldString.slice(0,scratchNumber);
-    stringEnd = heldString.slice(higherNumber,);
-    heldString = "" + stringStart + scratchNum2 + stringEnd;
+function roundUp10(integer) {
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice(higherNumber,);
+    heldString = "" + stringStart + 0 + stringEnd;
 }
 
-function roundUp(scratchNumber) {
-    scratchNum2 = parseInt(heldString[scratchNumber]);
-    scratchNum2 += 1;
-    stringStart = heldString.slice(0,scratchNumber);
-    stringEnd = heldString.slice(higherNumber,);
-    if (scratchNumber == 0 && stringEnd % 1 == 0) {
-        scratchNum2 = scratchNum2 + ".";
+function roundUp(integer) {
+    let higherInteger = parseInt(heldString[integer]);
+    higherInteger += 1;
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice(higherNumber,);
+    if (integer == 0 && stringEnd % 1 == 0) {
+        higherInteger = higherInteger + ".";
     };
-    heldString = "" + stringStart + scratchNum2 + stringEnd;
+    heldString = "" + stringStart + higherInteger + stringEnd;
 }
 
 function roundNumber(currentNumber) {
@@ -168,7 +162,6 @@ function clearDisplay() {
     operandY = null;
     operandZ = null;
     equation = function() {
-        let Q = Q
     }
     heldString = null;
     heldString = "";
