@@ -30,12 +30,6 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Make text in Display auto-resize to keep from overflowing
         +Allow longer heldString length (to input longer numbers)
 
-    -Floating point math is inexact. Maybe find a workaround to make, for instance, 0.00001 / 10 equal 0.000001 instead of 0.0000010000000000000002
-        +Possible solution: "You can avoid this by multiplying all inputs by 100, adding them, then comparing to 10,000. This will work because all integers between 2^-52 and 2^52 can be exactly represented in a double precision floating point numbers, but fractions may not be. http://en.wikipedia.org/wiki/Double_precision_floating-point_format
-
-        Another approach is to roll your own decimal addition function to work on number strings." 
-            - https://stackoverflow.com/questions/7540228/javascript-adds-0-000000002-to-calculation
-    
     ---
 
     -Automatically display Mobile site when viewed from Mobile device, 
