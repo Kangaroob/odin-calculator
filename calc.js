@@ -11,8 +11,9 @@ let operandX = null;
 let operandY = null;
 let operandZ = null;
 let result = null;
-let equation = function() {}
+let equate = function() {}
 let heldString = "";
+let higherNumber;
 let requireY = false;
 let requireClear = false;
 let isDecimal = false;
@@ -26,9 +27,11 @@ function getLog() {
 function pressON() {
     operate();
     let styleSelect = style.getAttribute("href")
-    if (styleSelect == "./style.css" && confirm("Change to Desktop View?")) {
+    if (styleSelect == "./style.css" &&
+             confirm("Change to Desktop View?")) {
         style.setAttribute("href", "./deskstyle.css")
-    } else if (styleSelect == "./deskstyle.css" && confirm("Change to Mobile View?")) {
+    } else if (styleSelect == "./deskstyle.css" &&
+             confirm("Change to Mobile View?")) {
         style.setAttribute("href", "./style.css")
     }
 }
@@ -43,7 +46,7 @@ function goToREADME() {
 function operatePlus() {
     thisPress = "plus"
     operate();
-    equation = function() {
+    equate = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX + tempY;
@@ -57,7 +60,7 @@ function operatePlus() {
 function operateMinus() {
     thisPress = "minus"
     operate();
-    equation = function() {
+    equate = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX - tempY;
@@ -71,7 +74,7 @@ function operateMinus() {
 function operateDivide() {
     thisPress = "divby"
     operate();
-    equation = function() {
+    equate = function() {
         result = operandX / operandY;
     };
     showDisplayExtend("/")
@@ -82,7 +85,7 @@ function operateDivide() {
 function operateMultiply() {
     thisPress = "multby"
     operate();
-    equation = function() {
+    equate = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX * tempY;
@@ -121,21 +124,26 @@ function operate() {
     assignOperand();
     clearDecimal();
     clearString();
-    if (thisPress == "clear" || thisPress == lastPress || lastPress == "equals" || lastPress == "clear"){
+    equateChecks();
+    showResult();
+    clearResult();
+}
+
+function equateChecks() {
+    if (thisPress == "clear" || thisPress == lastPress ||
+             lastPress == "equals" || lastPress == "clear") {
         if (requireY == true) {
             if (operandY != null) {
-                equation();
+                equate();
                 requireY = false;
             }
         } else {
-            equation();}
+            equate();}
     } else if (operandY != null) {
-        equation();
+        equate();
     } else {
         requireY = true;
     };
-    showResult();
-    clearResult();
 }
 
 function clearResult() {
@@ -199,7 +207,7 @@ function clearDisplay() {
     operandX = null;
     operandY = null;
     operandZ = null;
-    equation = function() {
+    equate = function() {
     }
     heldString = null;
     heldString = "";
@@ -237,50 +245,61 @@ function setDisplayColor() {
 }
 
 function checkForNumericDisplay() {
-    if (display.innerHTML == "NaN" || display.innerHTML == "Infinity" || display.innerHTML == "-Infinity") {
+    if (display.innerHTML == "NaN" || display.innerHTML ==
+             "Infinity" || display.innerHTML == "-Infinity") {
         display.innerHTML = infinityDisplay
         requireClear = true
     }
 }
 
 function prepareForDisplay(currentString) {
-    heldString = String(currentString)
-        let roundx = Number(currentString);
-        let roundxNeg = String(roundx);
-        if (roundxNeg[0] == "-") {
-            roundxNeg = roundxNeg.slice(1,);
-        };
-        roundxNeg = Number(roundxNeg)
-        if (roundxNeg < 1000000000000000000000) {
-            if (heldString.length > 8) {
-                roundColor = true;
-                if (roundxNeg > 9999999) {
-                    let roundxStr = parseInt(roundx);
-                    roundxStr = String(roundxStr);
-                    if (heldString[0] == "-") {
-                        heldString = heldString[0] + heldString[1] + "." + heldString[2] + "e+" + (roundxStr.length - 1);
-                    } else {
-                        heldString = heldString[0] + "." + heldString[1] + heldString[2] + "e+" + (roundxStr.length - 1);
-                    }
-                } else {
-                    heldString = heldString.slice(0,8);
-                }
-                if (heldString[8] >= 5) {
-                    roundNumber(7);
-                }
-            heldString = heldString.slice(0,8);
-            }
-        } else if (roundxNeg != 0){
-            roundColor = true;
-            heldString = roundx.toPrecision(2);
-        }
-        showOnDisplay(heldString);
-        heldString = ""
+    heldString = String(currentString);
+    let roundx = Number(currentString);
+    let roundxNeg = String(roundx);
+    prepareRoundXNeg(roundxNeg);
+    chooseRounding(roundxNeg);
+    showOnDisplay(heldString);
+    heldString = "";
 }
 
+function prepareRoundXNeg(roundxNeg) {
+    if (roundxNeg[0] == "-") {
+        roundxNeg = roundxNeg.slice(1,);
+    };
+    roundxNeg = Number(roundxNeg)
+}
+
+function chooseRounding(roundxNeg) {
+    if (roundxNeg < 1000000000000000000000) {
+        if (heldString.length > 8) {
+            roundColor = true;
+            if (roundxNeg > 9999999) {
+                let roundxStr = parseInt(roundx);
+                roundxStr = String(roundxStr);
+                if (heldString[0] == "-") {
+                    heldString = heldString[0] +
+                     heldString[1] + "." + heldString[2] +
+                      "e+" + (roundxStr.length - 1);
+                } else {
+                    heldString = heldString[0] + "." +
+                     heldString[1] + heldString[2] + "e+" +
+                      (roundxStr.length - 1);
+                }
+            } else {
+                heldString = heldString.slice(0,8);
+            }
+            if (heldString[8] >= 5) {
+                roundNumber(7);
+            }
+        heldString = heldString.slice(0,8);
+        }
+    } else if (roundxNeg != 0){
+        roundColor = true;
+        heldString = roundx.toPrecision(2);
+    }
+}
 
 function roundUp10(integer) {
-    console.log("test" + higherNumber);
     let stringStart = heldString.slice(0,integer);
     let stringEnd = heldString.slice(higherNumber,);
     heldString = "" + stringStart + 0 + stringEnd;
@@ -302,17 +321,19 @@ function roundNumber(currentNumber) {
     console.log("test" + higherNumber);
     if (currentNumber>0) {
         let lowerNumber = currentNumber - 1;
-        let higherNumber = currentNumber + 1;
+        higherNumber = currentNumber + 1;
         if (heldString[currentNumber] == ".") {
             roundNumber(lowerNumber)
         } else if (heldString[currentNumber] == 9) {
             roundUp10(currentNumber);
             roundNumber(lowerNumber)
-        } else if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
+        } else if (heldString[currentNumber] >= 0 &&
+                 heldString[currentNumber] <=8){
             roundUp(currentNumber);
         };
     } else if (currentNumber == 0) {
-        if (heldString[currentNumber] >= 0 && heldString[currentNumber] <=8){
+        if (heldString[currentNumber] >= 0 &&
+                 heldString[currentNumber] <=8){
             roundUp(currentNumber);
         } else if (heldString[currentNumber] == 9) {
             heldString.slice(1,);
@@ -335,7 +356,8 @@ function pressNumber(k) {
 }
 
 function pressDecimal() {
-    if (lastPress != "equals" && heldString.length < 8 && isDecimal != true) {
+    if (lastPress != "equals" && heldString.length < 8 &&
+             isDecimal != true) {
         heldString += "."
         isDecimal = true
         showOnDisplay(heldString);
