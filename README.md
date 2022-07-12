@@ -7,9 +7,11 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --Click or tap the i button to see this page
 
---If any rounding or truncation occurs in the display, the display screen will turn green to notify you. Any numbers used are rounded to 6 decimal places, but any places beyond that wouldn't be added to the display anyway. No additional rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
+--If any rounding or truncation occurs in the display, the display screen will turn green to notify you. This can happen even if no rounding or truncation occurs in the real equation, but floating point weirdness occurs in the background (see below)
 
---The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function. I belive any further floating point weirdness will be caught due to the final rounding to 6 decimal places.
+--Any numbers used are rounded to 6 decimal places, but any more decimals wouldn't be added to the display anyway. Beyond that, no rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display
+
+--JavaScript uses 64-bit floating point numbers, which can be a bit funky, especially with decimal numbers. As a workaround, in the plus and minus functions x and y are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and y are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function. I belive any further floating point weirdness will be caught due to the final rounding to 6 decimal places
 
 --Keyboard support is enabled! It is a little weird right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
     -Enter or Spacebar -> Equals =

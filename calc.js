@@ -187,8 +187,6 @@ function showResult() {
     };
 }
 
-    // toPrecision catch all
-
 function roundFinal() {
     let compareResult = result;
     result = Number(result.toPrecision(6));
