@@ -181,9 +181,20 @@ function showResult() {
     } else if (result == null) {
         prepareForDisplay(operandX);
     } else {
-        operandX = result
+        roundFinal();
+        operandX = result;
         prepareForDisplay(operandX);
     };
+}
+
+    // toPrecision catch all
+
+function roundFinal() {
+    let compareResult = result;
+    result = Number(result.toPrecision(6));
+    if (compareResult != result) {
+        roundColor = true;
+    }
 }
 
 function clearDisplay() {
@@ -274,12 +285,14 @@ function prepareForDisplay(currentString) {
 
 
 function roundUp10(integer) {
+    console.log("test" + higherNumber);
     let stringStart = heldString.slice(0,integer);
     let stringEnd = heldString.slice(higherNumber,);
     heldString = "" + stringStart + 0 + stringEnd;
 }
 
 function roundUp(integer) {
+    console.log("test" + higherNumber);
     let higherInteger = parseInt(heldString[integer]);
     higherInteger += 1;
     let stringStart = heldString.slice(0,integer);
@@ -291,6 +304,7 @@ function roundUp(integer) {
 }
 
 function roundNumber(currentNumber) {
+    console.log("test" + higherNumber);
     if (currentNumber>0) {
         let lowerNumber = currentNumber - 1;
         let higherNumber = currentNumber + 1;
