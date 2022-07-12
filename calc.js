@@ -254,36 +254,36 @@ function checkForNumericDisplay() {
 
 function prepareForDisplay(currentString) {
     heldString = String(currentString);
-    let roundx = Number(currentString);
-    let roundxNeg = String(roundx);
-    prepareRoundXNeg(roundxNeg);
-    chooseRounding(roundxNeg);
+    let roundedNum = Number(currentString);
+    let roundedNumNeg = String(roundedNum);
+    prepareroundedNumNeg(roundedNumNeg);
+    chooseRounding(roundedNumNeg);
     showOnDisplay(heldString);
     heldString = "";
 }
 
-function prepareRoundXNeg(roundxNeg) {
-    if (roundxNeg[0] == "-") {
-        roundxNeg = roundxNeg.slice(1,);
+function prepareroundedNumNeg(roundedNumNeg) {
+    if (roundedNumNeg[0] == "-") {
+        roundedNumNeg = roundedNumNeg.slice(1,);
     };
-    roundxNeg = Number(roundxNeg)
+    roundedNumNeg = Number(roundedNumNeg)
 }
 
-function chooseRounding(roundxNeg) {
-    if (roundxNeg < 1000000000000000000000) {
+function chooseRounding(roundedNumNeg) {
+    if (roundedNumNeg < 1000000000000000000000) {
         if (heldString.length > 8) {
             roundColor = true;
-            if (roundxNeg > 9999999) {
-                let roundxStr = parseInt(roundx);
-                roundxStr = String(roundxStr);
+            if (roundedNumNeg > 9999999) {
+                let roundedNumStr = parseInt(roundedNum);
+                roundedNumStr = String(roundedNumStr);
                 if (heldString[0] == "-") {
                     heldString = heldString[0] +
                      heldString[1] + "." + heldString[2] +
-                      "e+" + (roundxStr.length - 1);
+                      "e+" + (roundedNumStr.length - 1);
                 } else {
                     heldString = heldString[0] + "." +
                      heldString[1] + heldString[2] + "e+" +
-                      (roundxStr.length - 1);
+                      (roundedNumStr.length - 1);
                 }
             } else {
                 heldString = heldString.slice(0,8);
@@ -293,9 +293,9 @@ function chooseRounding(roundxNeg) {
             }
         heldString = heldString.slice(0,8);
         }
-    } else if (roundxNeg != 0){
+    } else if (roundedNumNeg != 0){
         roundColor = true;
-        heldString = roundx.toPrecision(2);
+        heldString = roundedNum.toPrecision(2);
     }
 }
 
@@ -306,7 +306,6 @@ function roundUp10(integer) {
 }
 
 function roundUp(integer) {
-    console.log("test" + higherNumber);
     let higherInteger = parseInt(heldString[integer]);
     higherInteger += 1;
     let stringStart = heldString.slice(0,integer);
@@ -318,7 +317,6 @@ function roundUp(integer) {
 }
 
 function roundNumber(currentNumber) {
-    console.log("test" + higherNumber);
     if (currentNumber>0) {
         let lowerNumber = currentNumber - 1;
         higherNumber = currentNumber + 1;
