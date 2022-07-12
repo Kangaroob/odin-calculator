@@ -271,7 +271,11 @@ function prepareroundedNumNeg(roundedNumNeg) {
 
 function chooseRounding(roundedNumNeg) {
     if (roundedNumNeg < 1000000000000000000000) {
-        if (heldString.length > 8) {
+        let absoluteValHeldString = heldString
+        if (heldString < 0) {
+            absoluteValHeldString *= -1; 
+        }
+        if (absoluteValHeldString.length > 8) {
             roundColor = true;
             if (roundedNumNeg > 9999999) {
                 let roundedNumStr = parseInt(roundedNum);
