@@ -11,9 +11,9 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
 
---Keyboard support is enabled! It is a little wonky right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
-    -Control -> ON
-    -Enter -> Equals =
+--Keyboard support is enabled! It is a little weird right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
+    -Enter or Spacebar -> Equals =
+    -o or O -> ON
     -` or ~ or PageUp -> Negative (-)
     -Backspace or Home -> Backspace ←
     -Escape or Delete -> Clear C

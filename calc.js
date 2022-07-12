@@ -20,7 +20,7 @@ let roundColor = false;
 let infinityDisplay = "-0.0-";
 
 function getLog() {
-    return log
+    return log;
 }
 
 function pressON() {
@@ -376,7 +376,8 @@ function pressBackspace() {
 function logKey(r) {
     log = r.key;
     switch (getLog()) {
-        case "Control":
+        case "O":
+        case "o":
             pressON();
             break;
         case "Backspace":
@@ -405,6 +406,7 @@ function logKey(r) {
             operateMultiply();
             break;
         case "Enter":
+        case " ":
             operateEquals();
             break;
         case "1":
