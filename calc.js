@@ -253,7 +253,7 @@ function prepareForDisplay(currentString) {
             roundxNeg = roundxNeg.slice(1,);
         };
         roundxNeg = Number(roundxNeg)
-        if (roundxNeg < 1000000000000000000000 && roundxNeg >= 0.00000000000001) {
+        if (roundxNeg < 1000000000000000000000) {
             if (heldString.length > 8) {
                 roundColor = true;
                 if (roundxNeg > 9999999) {
@@ -264,9 +264,6 @@ function prepareForDisplay(currentString) {
                     } else {
                         heldString = heldString[0] + "." + heldString[1] + heldString[2] + "e+" + (roundxStr.length - 1);
                     }
-                } else if (roundxNeg < 0.000001){
-                    roundx = roundx.toPrecision(3);
-                    heldString = String(roundx)
                 } else {
                     heldString = heldString.slice(0,8);
                 }
