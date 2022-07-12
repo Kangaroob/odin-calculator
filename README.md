@@ -1,7 +1,7 @@
 # odin-calculator
 Calculator assignment for The ODIN Project
 
-This is a calculator I built in JavaScript without using the Math object. I did my best to emulate the behaviour of a calculator I used in my childhood. For example, pressing "5 + + + + =" will calculate to 25. I really like it!
+This is a calculator I built in JavaScript without using the Math object. I did my best to emulate the behaviour of a calculator I used in my childhood. For example, pressing either "5 + 5 = = = =" or "5 + + + + =" will calculate to 25. I really like it!
 
 --Click or tap the ON button to change the display size. The default is made to fit the screen on mobile devices
 
@@ -9,7 +9,7 @@ This is a calculator I built in JavaScript without using the Math object. I did 
 
 --If any rounding or truncation occurs in the display, the display screen will turn green to notify you. No rounding or truncations occur on the numbers themselves (i.e. what the calculator uses in its equations), only to what is shown in the display.
 
---The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function.
+--The calculations are as accurate as can be expected with 64-bit floating point numbers. As a workaround, in the plus and minus functions x and operandY are both multiplied by 100 and the result is divided by 100. In the multiplied by function x and operandY are both multiplied by 100 and the result is divided by 10000. No workaround is currently implemented for the divided by function. If the calculation is off due to floating point weirdness, the display screen will turn green to notify you
 
 --Keyboard support is enabled! It is a little weird right now though. Notably, the '=' key will call the plus function, since I don't want to hold shift every time I want to use plus while on my laptop and an Enter key is usually accessible from the number pad. Take care that you don't have a button you're not meaning to use selected when pressing Enter. Other notable keybindings:
     -Enter or Spacebar -> Equals =
