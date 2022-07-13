@@ -94,29 +94,31 @@ function pressDecimal() {
 
 function PressNegative() {
     if (heldString.length > 0) {
-        if (heldString === ".") {
-            heldString = "-.";
-            showOnDisplay(heldString);
-        } else if (heldString === "-.") {
-            heldString = ".";
-            showOnDisplay(heldString);
-        } else if (heldString === "-") {
-            heldString = "";
-            showOnDisplay("0");
-        } else {
-            heldString = parseFloat(heldString)
-            heldString *= -1
-            heldString = String(heldString)
-            showOnDisplay(heldString);
-        }
-    } else if (lastPress === thisPress && operandX !== null){ 
-        operandX *= -1
-        prepareAndShowDisplay(operandX);
-    } else if (lastPress === "equals" && operandX !== null){ 
+        makeNegativeHeldString();
+    } else if (operandX !== null && (lastPress === thisPress || 
+                lastPress === "equals")){ 
         operandX *= -1
         prepareAndShowDisplay(operandX);
     } else {
         heldString += "-"
+        showOnDisplay(heldString);
+    }
+}
+
+function makeNegativeHeldString() {
+    if (heldString === ".") {
+        heldString = "-.";
+        showOnDisplay(heldString);
+    } else if (heldString === "-.") {
+        heldString = ".";
+        showOnDisplay(heldString);
+    } else if (heldString === "-") {
+        heldString = "";
+        showOnDisplay("0");
+    } else {
+        heldString = parseFloat(heldString)
+        heldString *= -1
+        heldString = String(heldString)
         showOnDisplay(heldString);
     }
 }
