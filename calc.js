@@ -58,11 +58,9 @@ function setDisplayColor() {
     if (roundColor === true) {
         display.setAttribute("style", "background-color: #7f7");
         displaybig.setAttribute("style", "background-color: #7f7");
-
     } else {
         display.setAttribute("style", "background-color: inherit");
         displaybig.setAttribute("style", "background-color: #777");
-
     }
 }
 
@@ -177,12 +175,18 @@ function operateMultiply() {
 }
 
 function operateEquals() {
-    thisPress = "equals";
+    repeatOperandYIfNull();
     operate();
     operandZ = operandY;
     operandY = null;
     lastPress = "equals";
     requireY = true;
+}
+
+function repeatOperandYIfNull() {
+    if (operandY === null) {
+        operandY = operandZ;
+    }
 }
 
 function showDisplayExtend(currentString) {
@@ -192,14 +196,7 @@ function showDisplayExtend(currentString) {
 }
 
 function operate() {
-    if (thisPress === "equals") {
-        if (operandY === null) {
-            operandY = operandZ;
-        }
-        thisPress = "clear";
-    } else {
-        operandZ = null;
-    }
+    operandZ = null;
     zeroHeldString();
     assignOperand();
     clearDecimal();
