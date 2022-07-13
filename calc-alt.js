@@ -331,7 +331,10 @@ function makeAbsoluteValue(number) {
     };
 }
 
-
+function roundBig() {
+    roundColor = true;
+    heldString = roundedNum.toPrecision(2);
+}
 
 function roundSmaller(roundedNumAbsolute, roundedNum) {
     roundColor = true;
