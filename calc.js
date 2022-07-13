@@ -1,6 +1,7 @@
 const display = document.querySelector('.display-text');
 const displaybig = document.querySelector('.display');
 const style = document.querySelector('.style');
+const infinityDisplay = "-0.0-";
 
 document.addEventListener('keydown', logKey);
 
@@ -17,7 +18,6 @@ let requireY = false;
 let requireClear = false;
 let isDecimal = false;
 let roundColor = false;
-let infinityDisplay = "-0.0-";
 
 function pressON() {
     operate();
