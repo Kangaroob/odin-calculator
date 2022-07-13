@@ -21,10 +21,10 @@ let roundColor = false;
 function pressON() {
     operate();
     let styleSelect = style.getAttribute("href")
-    if (styleSelect == "./style.css" &&
+    if (styleSelect === "./style.css" &&
              confirm("Change to Desktop View?")) {
         style.setAttribute("href", "./deskstyle.css")
-    } else if (styleSelect == "./deskstyle.css" &&
+    } else if (styleSelect === "./deskstyle.css" &&
              confirm("Change to Mobile View?")) {
         style.setAttribute("href", "./style.css")
     }
@@ -38,7 +38,7 @@ function goToREADME() {
 }
 
 function pressNumber(k) {
-    if (lastPress != "equals" && heldString.length < 8) {
+    if (lastPress !== "equals" && heldString.length < 8) {
         if (heldString.length < 7 || parseFloat(heldString) < 0)
         heldString += k
         showOnDisplay(heldString);
@@ -46,7 +46,7 @@ function pressNumber(k) {
 }
 
 function showOnDisplay(currentString) {
-    if (requireClear == false) {
+    if (requireClear === false) {
         setDisplayColor();
         display.innerHTML = currentString
     }
@@ -55,7 +55,7 @@ function showOnDisplay(currentString) {
 }
 
 function setDisplayColor() {
-    if (roundColor == true) {
+    if (roundColor === true) {
         display.setAttribute("style", "background-color: #7f7");
         displaybig.setAttribute("style", "background-color: #7f7");
 
@@ -67,8 +67,8 @@ function setDisplayColor() {
 }
 
 function checkForNumericDisplay() {
-    if (display.innerHTML == "NaN" || display.innerHTML ==
-             "Infinity" || display.innerHTML == "-Infinity") {
+    if (display.innerHTML === "NaN" || display.innerHTML ===
+             "Infinity" || display.innerHTML === "-Infinity") {
         display.innerHTML = infinityDisplay
         requireClear = true
     }
@@ -86,8 +86,8 @@ function pressBackspace() {
 };
 
 function pressDecimal() {
-    if (lastPress != "equals" && heldString.length < 8 &&
-             isDecimal != true) {
+    if (lastPress !== "equals" && heldString.length < 8 &&
+             isDecimal !== true) {
         heldString += "."
         isDecimal = true
         showOnDisplay(heldString);
@@ -96,13 +96,13 @@ function pressDecimal() {
 
 function PressNegative() {
     if (heldString.length > 0) {
-        if (heldString == ".") {
+        if (heldString === ".") {
             heldString = "-.";
             showOnDisplay(heldString);
-        } else if (heldString == "-.") {
+        } else if (heldString === "-.") {
             heldString = ".";
             showOnDisplay(heldString);
-        } else if (heldString == "-") {
+        } else if (heldString === "-") {
             heldString = "";
             showOnDisplay("0");
         } else {
@@ -111,10 +111,10 @@ function PressNegative() {
             heldString = String(heldString)
             showOnDisplay(heldString);
         }
-    } else if (lastPress == thisPress && operandX != null){ 
+    } else if (lastPress === thisPress && operandX !== null){ 
         operandX *= -1
         prepareAndShowDisplay(operandX);
-    } else if (lastPress == "equals" && operandX != null){ 
+    } else if (lastPress === "equals" && operandX !== null){ 
         operandX *= -1
         prepareAndShowDisplay(operandX);
     } else {
@@ -186,14 +186,14 @@ function operateEquals() {
 }
 
 function showDisplayExtend(currentString) {
-    if (requireClear == false) {
+    if (requireClear === false) {
         display.innerHTML += currentString
     }
 }
 
 function operate() {
-    if (thisPress == "equals") {
-        if (operandY == null) {
+    if (thisPress === "equals") {
+        if (operandY === null) {
             operandY = operandZ;
         }
         thisPress = "clear";
@@ -210,23 +210,23 @@ function operate() {
 }
 
 function zeroHeldString() { 
-    if (heldString == "-" || heldString == "." || heldString == "-.") {
+    if (heldString === "-" || heldString === "." || heldString === "-.") {
         heldString = 0;
     }
 }
 
 function assignOperand() {
-    if (operandX == null) {
+    if (operandX === null) {
         if (heldString.length > 0) {
             operandX = parseFloat(heldString);
         }
-    } else if (operandY == null) {
-        if (heldString.length == 0 && requireY != true) {
+    } else if (operandY === null) {
+        if (heldString.length === 0 && requireY !== true) {
             operandY = operandX
-        } else if (heldString.length != 0) {
+        } else if (heldString.length !== 0) {
             operandY = parseFloat(heldString)
         }
-    } else if (heldString.length != 0) {
+    } else if (heldString.length !== 0) {
         operandY = parseFloat(heldString)
     }
 }
@@ -240,17 +240,17 @@ function clearString() {
 }
 
 function runCalculationWithChecks() {
-    if (thisPress == "clear" || thisPress == lastPress ||
-             lastPress == "equals" || lastPress == "clear") {
-        if (requireY == true) {
-            if (operandY != null) {
+    if (thisPress === "clear" || thisPress === lastPress ||
+             lastPress === "equals" || lastPress === "clear") {
+        if (requireY === true) {
+            if (operandY !== null) {
                 runCalculation();
                 requireY = false;
             }
         } else {
             runCalculation();
         }
-    } else if (operandY != null) {
+    } else if (operandY !== null) {
         runCalculation();
     } else {
         requireY = true;
@@ -258,12 +258,12 @@ function runCalculationWithChecks() {
 }
 
 function showResult() {
-    if (operandX == null) {
+    if (operandX === null) {
         showOnDisplay("0")
-    } else if (result == "inf") {
+    } else if (result === "inf") {
         showOnDisplay(infinityDisplay);
         clearDisplay();
-    } else if (result == null) {
+    } else if (result === null) {
         prepareAndShowDisplay(operandX);
     } else {
         roundFinal();
@@ -288,7 +288,7 @@ function clearDisplay() {
     lastPress = "clear";  
     requireY = false;
     requireClear = false;
-    if (result != "inf") {
+    if (result !== "inf") {
         result = null;
         operate();
     } else {
@@ -307,21 +307,13 @@ function roundFinal() {
 function prepareAndShowDisplay(currentString) {
     heldString = String(currentString);
     let roundedNum = Number(currentString);
-    let roundedNumAbsolute = makeAbsoluteValue(roundedNum);
-    chooseRounding(roundedNumAbsolute);
+    chooseRounding(roundedNum);
     showOnDisplay(heldString);
     heldString = "";
 }
 
-function makeAbsoluteValue(number) {
-    if (number < 0) {
-        return number *= -1;
-    } else {
-        return number;
-    };
-}
-
-function chooseRounding(roundedNumAbsolute) {
+function chooseRounding(roundedNum) {
+    let roundedNumAbsolute = makeAbsoluteValue(roundedNum);
     if (roundedNumAbsolute < 1000000000000000000000) {
         let heldStringAbsolute = makeAbsoluteValue(heldString);
         if (heldStringAbsolute.length > 8) {
@@ -329,7 +321,7 @@ function chooseRounding(roundedNumAbsolute) {
             if (roundedNumAbsolute > 9999999) {
                 let roundedNumStr = parseInt(roundedNum);
                 roundedNumStr = String(roundedNumStr);
-                if (heldString[0] == "-") {
+                if (heldString[0] === "-") {
                     heldString = heldString[0] +
                      heldString[1] + "." + heldString[2] +
                       "e+" + (roundedNumStr.length - 1);
@@ -352,28 +344,36 @@ function chooseRounding(roundedNumAbsolute) {
     }
 }
 
+function makeAbsoluteValue(number) {
+    if (number < 0) {
+        return number *= -1;
+    } else {
+        return number;
+    };
+}
+
 function roundNumber(currentIndex) {
     if (currentIndex>0) {
         let previousIndex = currentIndex - 1;
-        if (heldString[currentIndex] == ".") {
+        if (heldString[currentIndex] === ".") {
             roundNumber(previousIndex)
-        } else if (heldString[currentIndex] == 9) {
+        } else if (heldString[currentIndex] === "9") {
             roundUp10(currentIndex);
             roundNumber(previousIndex)
         } else if (heldString[currentIndex] >= 0 &&
                  heldString[currentIndex] <=8){
             roundUp(currentIndex);
         };
-    } else if (currentIndex == 0) {
+    } else if (currentIndex === 0) {
         if (heldString[currentIndex] >= 0 &&
                  heldString[currentIndex] <=8){
             roundUp(currentIndex);
-        } else if (heldString[currentIndex] == 9) {
+        } else if (heldString[currentIndex] === "9") {
             heldString.slice(1,);
             heldString = "10" + heldString;
-        } else if (heldString[currentIndex] == ".") {
+        } else if (heldString[currentIndex] === ".") {
             heldString = "1" + heldString;
-        } else if (heldString[currentIndex] == "-") {
+        } else if (heldString[currentIndex] === "-") {
             heldString.slice(1,)
             heldString = "-1" + heldString;
         }
@@ -391,7 +391,7 @@ function roundUp(currentIndex) {
     higherInteger += 1;
     let stringStart = heldString.slice(0,currentIndex);
     let stringEnd = heldString.slice((currentIndex + 1),);
-    if (currentIndex == 0 && stringEnd % 1 == 0) {
+    if (currentIndex === 0 && stringEnd % 1 === 0) {
         higherInteger = higherInteger + ".";
     };
     heldString = "" + stringStart + higherInteger + stringEnd;
