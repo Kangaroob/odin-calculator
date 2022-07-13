@@ -306,37 +306,24 @@ function roundFinal() {
 function prepareAndShowDisplay(currentString) {
     heldString = String(currentString);
     let roundedNum = Number(currentString);
-    roundIfNeeded(roundedNum);
+    chooseRounding(roundedNum);
     showOnDisplay(heldString);
     heldString = "";
 }
 
-function roundIfNeeded(roundedNum) {
+function chooseRounding(roundedNum) {
     let roundedNumAbsolute = makeAbsoluteValue(roundedNum);
-    if (roundedNumAbsolute >= 1000000000000000000000) {
-        roundBig();
-    } else {
+    if (roundedNumAbsolute < 1000000000000000000000) {
         let heldStringAbsolute = makeAbsoluteValue(heldString);
         if (heldStringAbsolute.length > 8) {
-            roundSmaller(roundedNumAbsolute, roundedNum);
+            roundSmall(roundedNumAbsolute, roundedNum);
         }
+    } else if (roundedNumAbsolute != 0){
+        roundBig();
     }
 }
 
-function makeAbsoluteValue(number) {
-    if (number < 0) {
-        return number *= -1;
-    } else {
-        return number;
-    };
-}
-
-function roundBig() {
-    roundColor = true;
-    heldString = roundedNum.toPrecision(2);
-}
-
-function roundSmaller(roundedNumAbsolute, roundedNum) {
+function roundSmall(roundedNumAbsolute, roundedNum) {
     roundColor = true;
     if (roundedNumAbsolute > 9999999) {
         let roundedNumStr = parseInt(roundedNum);
@@ -354,19 +341,32 @@ function roundSmaller(roundedNumAbsolute, roundedNum) {
         heldString = heldString.slice(0,8);
     }
     if (heldString[8] >= 5) {
-        roundDigit(7);
+        roundNumber(7);
     }
     heldString = heldString.slice(0,8);
 }
 
-function roundDigit(currentIndex) {
+function roundBig() {
+    roundColor = true;
+    heldString = roundedNum.toPrecision(2);
+}
+
+function makeAbsoluteValue(number) {
+    if (number < 0) {
+        return number *= -1;
+    } else {
+        return number;
+    };
+}
+
+function roundNumber(currentIndex) {
     if (currentIndex>0) {
         let previousIndex = currentIndex - 1;
         if (heldString[currentIndex] === ".") {
-            roundDigit(previousIndex)
+            roundNumber(previousIndex)
         } else if (heldString[currentIndex] === "9") {
             roundUp10(currentIndex);
-            roundDigit(previousIndex)
+            roundNumber(previousIndex)
         } else if (heldString[currentIndex] >= 0 &&
                  heldString[currentIndex] <=8){
             roundUp(currentIndex);
