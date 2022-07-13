@@ -5,8 +5,6 @@ const infinityDisplay = "-0.0-";
 
 document.addEventListener('keydown', logKey);
 
-let lastPress = "clear";
-let thisPress = "clear";
 let operandX = null;
 let operandY = null;
 let operandZ = null;
@@ -14,6 +12,8 @@ let result = null;
 let equate = function() {}
 let heldString = "";
 let higherNumber;
+let lastPress = "clear";
+let thisPress = "clear";
 let requireY = false;
 let requireClear = false;
 let isDecimal = false;
