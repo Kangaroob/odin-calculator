@@ -352,46 +352,46 @@ function chooseRounding(roundedNumAbsolute) {
     }
 }
 
-function roundNumber(currentNumber) {
-    if (currentNumber>0) {
-        let lowerNumber = currentNumber - 1;
-        if (heldString[currentNumber] == ".") {
-            roundNumber(lowerNumber)
-        } else if (heldString[currentNumber] == 9) {
-            roundUp10(currentNumber);
-            roundNumber(lowerNumber)
-        } else if (heldString[currentNumber] >= 0 &&
-                 heldString[currentNumber] <=8){
-            roundUp(currentNumber);
+function roundNumber(currentIndex) {
+    if (currentIndex>0) {
+        let previousIndex = currentIndex - 1;
+        if (heldString[currentIndex] == ".") {
+            roundNumber(previousIndex)
+        } else if (heldString[currentIndex] == 9) {
+            roundUp10(currentIndex);
+            roundNumber(previousIndex)
+        } else if (heldString[currentIndex] >= 0 &&
+                 heldString[currentIndex] <=8){
+            roundUp(currentIndex);
         };
-    } else if (currentNumber == 0) {
-        if (heldString[currentNumber] >= 0 &&
-                 heldString[currentNumber] <=8){
-            roundUp(currentNumber);
-        } else if (heldString[currentNumber] == 9) {
+    } else if (currentIndex == 0) {
+        if (heldString[currentIndex] >= 0 &&
+                 heldString[currentIndex] <=8){
+            roundUp(currentIndex);
+        } else if (heldString[currentIndex] == 9) {
             heldString.slice(1,);
             heldString = "10" + heldString;
-        } else if (heldString[currentNumber] == ".") {
+        } else if (heldString[currentIndex] == ".") {
             heldString = "1" + heldString;
-        } else if (heldString[currentNumber] == "-") {
+        } else if (heldString[currentIndex] == "-") {
             heldString.slice(1,)
             heldString = "-1" + heldString;
         }
     }
 };
 
-function roundUp10(integer) {
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice((integer + 1),);
+function roundUp10(currentIndex) {
+    let stringStart = heldString.slice(0,currentIndex);
+    let stringEnd = heldString.slice((currentIndex + 1),);
     heldString = "" + stringStart + 0 + stringEnd;
 }
 
-function roundUp(integer) {
-    let higherInteger = parseInt(heldString[integer]);
+function roundUp(currentIndex) {
+    let higherInteger = parseInt(heldString[currentIndex]);
     higherInteger += 1;
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice((integer + 1),);
-    if (integer == 0 && stringEnd % 1 == 0) {
+    let stringStart = heldString.slice(0,currentIndex);
+    let stringEnd = heldString.slice((currentIndex + 1),);
+    if (currentIndex == 0 && stringEnd % 1 == 0) {
         higherInteger = higherInteger + ".";
     };
     heldString = "" + stringStart + higherInteger + stringEnd;
