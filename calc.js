@@ -123,25 +123,10 @@ function operate() {
     clearResult();
 }
 
-function equateChecks() {
-    if (thisPress == "clear" || thisPress == lastPress ||
-             lastPress == "equals" || lastPress == "clear") {
-        if (requireY == true) {
-            if (operandY != null) {
-                equate();
-                requireY = false;
-            }
-        } else {
-            equate();}
-    } else if (operandY != null) {
-        equate();
-    } else {
-        requireY = true;
-    };
-}
-
-function clearResult() {
-    result = null;
+function zeroHeldString() { 
+    if (heldString == "-" || heldString == "." || heldString == "-.") {
+        heldString = 0;
+    }
 }
 
 function assignOperand() {
@@ -164,14 +149,26 @@ function clearDecimal() {
     isDecimal = false;
 }
 
-function zeroHeldString() { 
-    if (heldString == "-" || heldString == "." || heldString == "-.") {
-        heldString = 0;
-    }
-}
-
 function clearString() {
     heldString = ""
+}
+
+function equateChecks() {
+    if (thisPress == "clear" || thisPress == lastPress ||
+             lastPress == "equals" || lastPress == "clear") {
+        if (requireY == true) {
+            if (operandY != null) {
+                equate();
+                requireY = false;
+            }
+        } else {
+            equate();
+        }
+    } else if (operandY != null) {
+        equate();
+    } else {
+        requireY = true;
+    };
 }
 
 function showResult() {
@@ -189,32 +186,8 @@ function showResult() {
     };
 }
 
-function roundFinal() {
-    let compareResult = result;
-    result = Number(result.toPrecision(6));
-    if (compareResult != result) {
-        roundColor = true;
-    }
-}
-
-function clearDisplay() {
-    operandX = null;
-    operandY = null;
-    operandZ = null;
-    equate = function() {
-    }
-    heldString = null;
-    heldString = "";
-    thisPress = "clear";
-    lastPress = "clear";  
-    requireY = false;
-    requireClear = false;
-    if (result != "inf") {
-        result = null;
-        operate();
-    } else {
-        result=null;
-    }
+function clearResult() {
+    result = null;
 }
 
 function showOnDisplay(currentString) {
@@ -243,6 +216,34 @@ function checkForNumericDisplay() {
              "Infinity" || display.innerHTML == "-Infinity") {
         display.innerHTML = infinityDisplay
         requireClear = true
+    }
+}
+
+function clearDisplay() {
+    operandX = null;
+    operandY = null;
+    operandZ = null;
+    equate = function() {
+    }
+    heldString = null;
+    heldString = "";
+    thisPress = "clear";
+    lastPress = "clear";  
+    requireY = false;
+    requireClear = false;
+    if (result != "inf") {
+        result = null;
+        operate();
+    } else {
+        result=null;
+    }
+}
+
+function roundFinal() {
+    let compareResult = result;
+    result = Number(result.toPrecision(6));
+    if (compareResult != result) {
+        roundColor = true;
     }
 }
 
