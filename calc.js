@@ -316,31 +316,39 @@ function chooseRounding(roundedNum) {
     if (roundedNumAbsolute < 1000000000000000000000) {
         let heldStringAbsolute = makeAbsoluteValue(heldString);
         if (heldStringAbsolute.length > 8) {
-            roundColor = true;
-            if (roundedNumAbsolute > 9999999) {
-                let roundedNumStr = parseInt(roundedNum);
-                roundedNumStr = String(roundedNumStr);
-                if (heldString[0] === "-") {
-                    heldString = heldString[0] +
-                     heldString[1] + "." + heldString[2] +
-                      "e+" + (roundedNumStr.length - 1);
-                } else {
-                    heldString = heldString[0] + "." +
-                     heldString[1] + heldString[2] + "e+" +
-                      (roundedNumStr.length - 1);
-                }
-            } else {
-                heldString = heldString.slice(0,8);
-            }
-            if (heldString[8] >= 5) {
-                roundNumber(7);
-            }
-        heldString = heldString.slice(0,8);
+            roundSmall(roundedNumAbsolute, roundedNum);
         }
     } else if (roundedNumAbsolute != 0){
-        roundColor = true;
-        heldString = roundedNum.toPrecision(2);
+        roundBig();
     }
+}
+
+function roundSmall(roundedNumAbsolute, roundedNum) {
+    roundColor = true;
+    if (roundedNumAbsolute > 9999999) {
+        let roundedNumStr = parseInt(roundedNum);
+        roundedNumStr = String(roundedNumStr);
+        if (heldString[0] === "-") {
+            heldString = heldString[0] +
+                heldString[1] + "." + heldString[2] +
+                "e+" + (roundedNumStr.length - 1);
+        } else {
+            heldString = heldString[0] + "." +
+                heldString[1] + heldString[2] + "e+" +
+                (roundedNumStr.length - 1);
+        }
+    } else {
+        heldString = heldString.slice(0,8);
+    }
+    if (heldString[8] >= 5) {
+        roundNumber(7);
+    }
+    heldString = heldString.slice(0,8);
+}
+
+functin roundBig() {
+    roundColor = true;
+    heldString = roundedNum.toPrecision(2);
 }
 
 function makeAbsoluteValue(number) {
