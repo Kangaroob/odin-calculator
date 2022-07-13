@@ -11,7 +11,6 @@ let operandZ = null;
 let result = null;
 let equate = function() {}
 let heldString = "";
-let higherNumber;
 let lastPress = "clear";
 let thisPress = "clear";
 let requireY = false;
@@ -300,7 +299,7 @@ function chooseRounding(roundedNumNeg) {
 
 function roundUp10(integer) {
     let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice(higherNumber,);
+    let stringEnd = heldString.slice((integer + 1),);
     heldString = "" + stringStart + 0 + stringEnd;
 }
 
@@ -308,7 +307,7 @@ function roundUp(integer) {
     let higherInteger = parseInt(heldString[integer]);
     higherInteger += 1;
     let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice(higherNumber,);
+    let stringEnd = heldString.slice((integer + 1),);
     if (integer == 0 && stringEnd % 1 == 0) {
         higherInteger = higherInteger + ".";
     };
@@ -318,7 +317,6 @@ function roundUp(integer) {
 function roundNumber(currentNumber) {
     if (currentNumber>0) {
         let lowerNumber = currentNumber - 1;
-        higherNumber = currentNumber + 1;
         if (heldString[currentNumber] == ".") {
             roundNumber(lowerNumber)
         } else if (heldString[currentNumber] == 9) {
