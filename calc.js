@@ -250,29 +250,29 @@ function roundFinal() {
 function prepareForDisplay(currentString) {
     heldString = String(currentString);
     let roundedNum = Number(currentString);
-    let roundedNumNeg = String(roundedNum);
-    prepareroundedNumNeg(roundedNumNeg);
-    chooseRounding(roundedNumNeg);
+    let roundedNumAbsolute = prepareRoundedNumAbsolute(roundedNum);
+    chooseRounding(roundedNumAbsolute);
     showOnDisplay(heldString);
     heldString = "";
 }
 
-function prepareroundedNumNeg(roundedNumNeg) {
-    if (roundedNumNeg[0] == "-") {
-        roundedNumNeg = roundedNumNeg.slice(1,);
+function prepareRoundedNumAbsolute(roundedNum) {
+    if (roundedNum < 0) {
+        return roundedNum *= -1;
+    } else {
+        return roundedNum;
     };
-    roundedNumNeg = Number(roundedNumNeg)
 }
 
-function chooseRounding(roundedNumNeg) {
-    if (roundedNumNeg < 1000000000000000000000) {
-        let absoluteValHeldString = heldString
+function chooseRounding(roundedNumAbsolute) {
+    if (roundedNumAbsolute < 1000000000000000000000) {
+        let absoluteValHeldString = heldString;
         if (heldString < 0) {
             absoluteValHeldString *= -1; 
         }
         if (absoluteValHeldString.length > 8) {
             roundColor = true;
-            if (roundedNumNeg > 9999999) {
+            if (roundedNumAbsolute > 9999999) {
                 let roundedNumStr = parseInt(roundedNum);
                 roundedNumStr = String(roundedNumStr);
                 if (heldString[0] == "-") {
@@ -292,7 +292,7 @@ function chooseRounding(roundedNumNeg) {
             }
         heldString = heldString.slice(0,8);
         }
-    } else if (roundedNumNeg != 0){
+    } else if (roundedNumAbsolute != 0){
         roundColor = true;
         heldString = roundedNum.toPrecision(2);
     }
