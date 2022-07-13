@@ -4,7 +4,6 @@ const style = document.querySelector('.style');
 
 document.addEventListener('keydown', logKey);
 
-let log;
 let lastPress = "clear";
 let thisPress = "clear";
 let operandX = null;
@@ -19,10 +18,6 @@ let requireClear = false;
 let isDecimal = false;
 let roundColor = false;
 let infinityDisplay = "-0.0-";
-
-function getLog() {
-    return log;
-}
 
 function pressON() {
     operate();
@@ -406,9 +401,8 @@ function pressBackspace() {
     }
 };
 
-function logKey(r) {
-    log = r.key;
-    switch (getLog()) {
+function logKey(log) {
+    switch (log.key) {
         case "O":
         case "o":
             pressON();
