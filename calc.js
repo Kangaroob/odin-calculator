@@ -298,23 +298,6 @@ function chooseRounding(roundedNumAbsolute) {
     }
 }
 
-function roundUp10(integer) {
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice((integer + 1),);
-    heldString = "" + stringStart + 0 + stringEnd;
-}
-
-function roundUp(integer) {
-    let higherInteger = parseInt(heldString[integer]);
-    higherInteger += 1;
-    let stringStart = heldString.slice(0,integer);
-    let stringEnd = heldString.slice((integer + 1),);
-    if (integer == 0 && stringEnd % 1 == 0) {
-        higherInteger = higherInteger + ".";
-    };
-    heldString = "" + stringStart + higherInteger + stringEnd;
-}
-
 function roundNumber(currentNumber) {
     if (currentNumber>0) {
         let lowerNumber = currentNumber - 1;
@@ -342,6 +325,23 @@ function roundNumber(currentNumber) {
         }
     }
 };
+
+function roundUp10(integer) {
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice((integer + 1),);
+    heldString = "" + stringStart + 0 + stringEnd;
+}
+
+function roundUp(integer) {
+    let higherInteger = parseInt(heldString[integer]);
+    higherInteger += 1;
+    let stringStart = heldString.slice(0,integer);
+    let stringEnd = heldString.slice((integer + 1),);
+    if (integer == 0 && stringEnd % 1 == 0) {
+        higherInteger = higherInteger + ".";
+    };
+    heldString = "" + stringStart + higherInteger + stringEnd;
+}
 
 function pressNumber(k) {
     if (lastPress != "equals" && heldString.length < 8) {
