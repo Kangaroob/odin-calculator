@@ -9,7 +9,7 @@ let operandX = null;
 let operandY = null;
 let operandZ = null;
 let result = null;
-let equate = function() {}
+let runCalculation = function() {}
 let heldString = "";
 let lastPress = "clear";
 let thisPress = "clear";
@@ -37,10 +37,96 @@ function goToREADME() {
     }
 }
 
+function pressNumber(k) {
+    if (lastPress != "equals" && heldString.length < 8) {
+        if (heldString.length < 7 || parseFloat(heldString) < 0)
+        heldString += k
+        showOnDisplay(heldString);
+    }
+}
+
+function showOnDisplay(currentString) {
+    if (requireClear == false) {
+        setDisplayColor();
+        display.innerHTML = currentString
+    }
+    checkForNumericDisplay();
+    roundColor = false;
+}
+
+function setDisplayColor() {
+    if (roundColor == true) {
+        display.setAttribute("style", "background-color: #7f7");
+        displaybig.setAttribute("style", "background-color: #7f7");
+
+    } else {
+        display.setAttribute("style", "background-color: inherit");
+        displaybig.setAttribute("style", "background-color: #777");
+
+    }
+}
+
+function checkForNumericDisplay() {
+    if (display.innerHTML == "NaN" || display.innerHTML ==
+             "Infinity" || display.innerHTML == "-Infinity") {
+        display.innerHTML = infinityDisplay
+        requireClear = true
+    }
+}
+
+function pressBackspace() {
+    if (heldString.length > 0) {
+        heldString = heldString.slice(0, -1);
+        if (heldString.length > 0) {
+            showOnDisplay(heldString);
+        } else {
+            showOnDisplay("0");
+        }
+    }
+};
+
+function pressDecimal() {
+    if (lastPress != "equals" && heldString.length < 8 &&
+             isDecimal != true) {
+        heldString += "."
+        isDecimal = true
+        showOnDisplay(heldString);
+    }
+}
+
+function PressNegative() {
+    if (heldString.length > 0) {
+        if (heldString == ".") {
+            heldString = "-.";
+            showOnDisplay(heldString);
+        } else if (heldString == "-.") {
+            heldString = ".";
+            showOnDisplay(heldString);
+        } else if (heldString == "-") {
+            heldString = "";
+            showOnDisplay("0");
+        } else {
+            heldString = parseFloat(heldString)
+            heldString *= -1
+            heldString = String(heldString)
+            showOnDisplay(heldString);
+        }
+    } else if (lastPress == thisPress && operandX != null){ 
+        operandX *= -1
+        prepareAndShowDisplay(operandX);
+    } else if (lastPress == "equals" && operandX != null){ 
+        operandX *= -1
+        prepareAndShowDisplay(operandX);
+    } else {
+        heldString += "-"
+        showOnDisplay(heldString);
+    }
+}
+
 function operatePlus() {
     thisPress = "plus"
     operate();
-    equate = function() {
+    runCalculation = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX + tempY;
@@ -54,7 +140,7 @@ function operatePlus() {
 function operateMinus() {
     thisPress = "minus"
     operate();
-    equate = function() {
+    runCalculation = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX - tempY;
@@ -68,7 +154,7 @@ function operateMinus() {
 function operateDivide() {
     thisPress = "divby"
     operate();
-    equate = function() {
+    runCalculation = function() {
         result = operandX / operandY;
     };
     showDisplayExtend("/")
@@ -79,7 +165,7 @@ function operateDivide() {
 function operateMultiply() {
     thisPress = "multby"
     operate();
-    equate = function() {
+    runCalculation = function() {
         let tempX = 100 * operandX;
         let tempY = 100 * operandY;
         result = tempX * tempY;
@@ -118,7 +204,7 @@ function operate() {
     assignOperand();
     clearDecimal();
     clearString();
-    equateChecks();
+    runCalculationWithChecks();
     showResult();
     clearResult();
 }
@@ -153,19 +239,19 @@ function clearString() {
     heldString = ""
 }
 
-function equateChecks() {
+function runCalculationWithChecks() {
     if (thisPress == "clear" || thisPress == lastPress ||
              lastPress == "equals" || lastPress == "clear") {
         if (requireY == true) {
             if (operandY != null) {
-                equate();
+                runCalculation();
                 requireY = false;
             }
         } else {
-            equate();
+            runCalculation();
         }
     } else if (operandY != null) {
-        equate();
+        runCalculation();
     } else {
         requireY = true;
     };
@@ -178,11 +264,11 @@ function showResult() {
         showOnDisplay(infinityDisplay);
         clearDisplay();
     } else if (result == null) {
-        prepareForDisplay(operandX);
+        prepareAndShowDisplay(operandX);
     } else {
         roundFinal();
         operandX = result;
-        prepareForDisplay(operandX);
+        prepareAndShowDisplay(operandX);
     };
 }
 
@@ -190,40 +276,11 @@ function clearResult() {
     result = null;
 }
 
-function showOnDisplay(currentString) {
-    if (requireClear == false) {
-        setDisplayColor();
-        display.innerHTML = currentString
-    }
-    checkForNumericDisplay();
-    roundColor = false;
-}
-
-function setDisplayColor() {
-    if (roundColor == true) {
-        display.setAttribute("style", "background-color: #7f7");
-        displaybig.setAttribute("style", "background-color: #7f7");
-
-    } else {
-        display.setAttribute("style", "background-color: inherit");
-        displaybig.setAttribute("style", "background-color: #777");
-
-    }
-}
-
-function checkForNumericDisplay() {
-    if (display.innerHTML == "NaN" || display.innerHTML ==
-             "Infinity" || display.innerHTML == "-Infinity") {
-        display.innerHTML = infinityDisplay
-        requireClear = true
-    }
-}
-
 function clearDisplay() {
     operandX = null;
     operandY = null;
     operandZ = null;
-    equate = function() {
+    runCalculation = function() {
     }
     heldString = null;
     heldString = "";
@@ -247,30 +304,27 @@ function roundFinal() {
     }
 }
 
-function prepareForDisplay(currentString) {
+function prepareAndShowDisplay(currentString) {
     heldString = String(currentString);
     let roundedNum = Number(currentString);
-    let roundedNumAbsolute = prepareRoundedNumAbsolute(roundedNum);
+    let roundedNumAbsolute = makeAbsoluteValue(roundedNum);
     chooseRounding(roundedNumAbsolute);
     showOnDisplay(heldString);
     heldString = "";
 }
 
-function prepareRoundedNumAbsolute(roundedNum) {
-    if (roundedNum < 0) {
-        return roundedNum *= -1;
+function makeAbsoluteValue(number) {
+    if (number < 0) {
+        return number *= -1;
     } else {
-        return roundedNum;
+        return number;
     };
 }
 
 function chooseRounding(roundedNumAbsolute) {
     if (roundedNumAbsolute < 1000000000000000000000) {
-        let absoluteValHeldString = heldString;
-        if (heldString < 0) {
-            absoluteValHeldString *= -1; 
-        }
-        if (absoluteValHeldString.length > 8) {
+        let heldStringAbsolute = makeAbsoluteValue(heldString);
+        if (heldStringAbsolute.length > 8) {
             roundColor = true;
             if (roundedNumAbsolute > 9999999) {
                 let roundedNumStr = parseInt(roundedNum);
@@ -342,63 +396,6 @@ function roundUp(integer) {
     };
     heldString = "" + stringStart + higherInteger + stringEnd;
 }
-
-function pressNumber(k) {
-    if (lastPress != "equals" && heldString.length < 8) {
-        if (heldString.length < 7 || parseFloat(heldString) < 0)
-        heldString += k
-        showOnDisplay(heldString);
-    }
-}
-
-function pressDecimal() {
-    if (lastPress != "equals" && heldString.length < 8 &&
-             isDecimal != true) {
-        heldString += "."
-        isDecimal = true
-        showOnDisplay(heldString);
-    }
-}
-
-function PressNegative() {
-    if (heldString.length > 0) {
-        if (heldString == ".") {
-            heldString = "-.";
-            showOnDisplay(heldString);
-        } else if (heldString == "-.") {
-            heldString = ".";
-            showOnDisplay(heldString);
-        } else if (heldString == "-") {
-            heldString = "";
-            showOnDisplay("0");
-        } else {
-            heldString = parseFloat(heldString)
-            heldString *= -1
-            heldString = String(heldString)
-            showOnDisplay(heldString);
-        }
-    } else if (lastPress == thisPress && operandX != null){ 
-        operandX *= -1
-        prepareForDisplay(operandX);
-    } else if (lastPress == "equals" && operandX != null){ 
-        operandX *= -1
-        prepareForDisplay(operandX);
-    } else {
-        heldString += "-"
-        showOnDisplay(heldString);
-    }
-}
-
-function pressBackspace() {
-    if (heldString.length > 0) {
-        heldString = heldString.slice(0, -1);
-        if (heldString.length > 0) {
-            showOnDisplay(heldString);
-        } else {
-            showOnDisplay("0");
-        }
-    }
-};
 
 function logKey(log) {
     switch (log.key) {
