@@ -30,8 +30,6 @@ This is a calculator I built in JavaScript without using the Math object. I did 
     -Make text in Display auto-resize to keep from overflowing
         +Allow longer heldString length (to input longer numbers)
 
-    ---
-
     -Automatically display Mobile site when viewed from Mobile device, 
     and Desktop when viewed from Desktop device
     
