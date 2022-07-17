@@ -373,7 +373,7 @@ function roundDigit(currentIndex) {
         };
     } else if (currentIndex === 0) {
         if (heldString[currentIndex] >= 0 &&
-                 heldString[currentIndex] <=8){
+                 heldString[currentIndex] <= 8){
             roundUp(currentIndex);
         } else if (heldString[currentIndex] === "9") {
             heldString.slice(1,);
