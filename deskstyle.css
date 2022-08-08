@@ -61,7 +61,7 @@ body {
     display: flex;
     flex: 1 0 auto;
     font-size: larger;
-    height: 1.12em;
+    /* height: 1.12em; */
     border-radius: 8px;
     align-items: center;
 }
