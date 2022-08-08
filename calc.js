@@ -3,6 +3,10 @@ const displaybig = document.querySelector('.display');
 const style = document.querySelector('.style');
 const infinityDisplay = "-0.0-";
 
+if (window.outerWidth > window.outerHeight) {
+    style.setAttribute("href", "./deskstyle.css")
+}
+
 document.addEventListener('keydown', logKey);
 
 let operandX = null;
